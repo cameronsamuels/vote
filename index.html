@@ -1,3 +1,5 @@
+<!-- Code by Cameron Samuels -->
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   
@@ -35,27 +37,50 @@
           <span>You may have been removed from voter rolls for many reasons: change of address, change of name, and even accidentally during voter purges. Verify whether you are registered at the <a href="https://teamrv-mvp.sos.texas.gov/MVP/mvp.do">Secretary of State website</a> especially if you registered recently.</span>
         </li>
         <li>
+          <input id="choose-method" type="checkbox">
+          <label for="choose-method">Choose whether you will vote in person or by mail</label>
+          <span>You can vote by mail if you are aged 65+, have a physical disability, outside the county during early voting and on election day, or confined in jail. Otherwise, you must vote in person.</span>
+          <span class="radio">
+            <div>I will vote:</div>
+            <div>
+              <input id="vote-in-person" name="method" value="In person" type="radio">
+              <input id="vote-by-mail" name="method" value="By mail" type="radio">
+            </div>
+          </span>
+        </li>
+        <li class="absentee">
           <input id="request-absentee" type="checkbox">
           <label for="request-absentee">Request your absentee mail-in ballot before the state-specific deadline</label>
-          <span>Are you 65+, have a physical disability, outside the county during early voting and on election day, or confined in jail? Visit the <a href="https://www.sos.texas.gov/elections/voter/reqabbm.shtml">Secretary of State website</a> to request a ballot by mail by October 23.</span>
+          <span>Visit the <a href="https://www.sos.texas.gov/elections/voter/reqabbm.shtml">Secretary of State website</a> to request a ballot by mail by October 23.</span>
         </li>
-        <li>
+        <li class="appearance">
           <input id="lookup-info" type="checkbox">
           <label for="lookup-info">Lookup polling information</label>
         </li>
-        <li class="sub">
-          <input id="lookup-dates" type="checkbox">
-          <label for="lookup-dates">Voting dates</label>
-        </li>
-        <li class="sub">
+        <li class="sub appearance">
           <input id="lookup-locations" type="checkbox">
           <label for="lookup-locations">Find my polling location(s)</label>
           <span>You may vote at any polling location in your county during early voting, but you may have to vote at a specific location on election day. Visit the <a href="https://teamrv-mvp.sos.texas.gov/MVP/mvp.do">Secretary of State website</a> to find your polling location(s).</span>
         </li>
-        <li class="sub">
+        <li class="sub appearance">
           <input id="lookup-hours" type="checkbox">
           <label for="lookup-hours">Polling hours</label>
           <span>Polls are open from 7am to 7pm on election day, but may have different hours during early voting. Visit the <a href="https://teamrv-mvp.sos.texas.gov/MVP/mvp.do">Secretary of State website</a> to find the hours for your polling location(s).</span>
+        </li>
+        <li class="sub appearance">
+          <input id="lookup-dates" type="checkbox">
+          <label for="lookup-dates">Voting dates</label>
+          <span>Early voting starts on Tuesday, October 13 and ends on October 30. Election day is on Tuesday, November 3.</span>
+          <span class="dropdown">
+            I will vote on:
+            <div>
+              <div contenteditable></div>
+              <div>
+                <div>Tue, October 13</div>
+                <div>Wed, October 14</div>
+              </div>
+            </div>
+          </span>
         </li>
         <li>
           <input id="lookup-requirements" type="checkbox">
@@ -70,23 +95,28 @@
           <input id="lookup-covid" type="checkbox">
           <label for="lookup-covid">COVID-19 Precautions</label>
         </li>
+        <li class="appearance">
+          <input id="determine-transportation" type="checkbox">
+          <label for="determine-transportation">Determine your transportation</label>
+          <span>Will you be driving, biking, getting a ride from someone else, or getting to the polls by other means? Figure this out ahead of time and always have a backup.</span>
+        </li>
         <li>
           <input id="save-hotline" type="checkbox">
           <label for="save-hotline">Save the Election Protection Hotline phone number</label>
           <span>In case of need, call 1-866-OUR-VOTE to resolve any roadblocks with voting</span>
         </li>
         <li>
-          <input id="make-plan" type="checkbox">
-          <label for="make-plan">Make your voting plan</label>
+          <input id="make-statement" type="checkbox">
+          <label for="make-statement">Make your voting statement</label>
         </li>
       </ul>
     </div>
 
     <div id="statement">
       <h2>My Voting Plan</h2>
-      <div>I will vote on <span contenteditable>[ date ]</span> at <span contenteditable>[ location ]</span> <span contenteditable>[ relative time ]</span></div>
-      <div class="button">Print Hard Copy</div>
-      <div class="button">Add to Calendar</div>
+      <div>I will vote on <span id="statement-date" contenteditable>[ date ]</span> at <span contenteditable>[ location ]</span> <span contenteditable>[ relative time ]</span></div>
+      <div id="print-statement" class="button">Print Hard Copy</div>
+      <a id="add-to-calendar"><div class="button">Add to Calendar</div></a>
     </div>
 
     <script src="script.js"></script>

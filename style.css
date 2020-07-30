@@ -1,3 +1,5 @@
+/* Code by Cameron Samuels */
+
 body {
   margin: 0;
   margin-bottom: 30px;
@@ -28,6 +30,9 @@ body>div {
 }
 
 
+/*
+  Heading
+*/
 
 body>div:first-of-type {
   max-width: 550px;
@@ -48,6 +53,9 @@ body>div:first-of-type p {
 }
 
 
+/*
+  Checklist
+*/
 
 #checklist {
   display: inline-block;
@@ -63,6 +71,10 @@ body>div:first-of-type p {
   padding-left: 30px;
 }
 
+#checklist label {
+  cursor: pointer;
+}
+
 #checklist input[type="checkbox"] {
   -webkit-appearance: none;
   padding: 10px;
@@ -73,10 +85,17 @@ body>div:first-of-type p {
   box-shadow: none;
   -webkit-tap-highlight-color: transparent;
   vertical-align: middle;
+  cursor: pointer;
 }
 
 #checklist input[type="checkbox"]:checked {
   background: green;
+}
+
+#checklist input[type="checkbox"]:checked,
+#checklist input[type="checkbox"]:checked + label,
+#checklist input[type="checkbox"]:checked + label + span {
+  opacity: .5;
 }
 
 #checklist input[type="checkbox"]:checked:before {
@@ -90,11 +109,82 @@ body>div:first-of-type p {
 
 #checklist span {
   display: block;
+  margin-bottom: 5px;
   padding-left: 45px;
   font-size: .8em;
 }
 
 
+/*
+  Dropdown selection
+*/
+
+#checklist .dropdown>div {
+  display: inline-block;
+  position: relative;
+}
+
+#checklist .dropdown>div>div:first-of-type {
+  min-width: 80px;
+  height: 1em;
+  border-bottom: 1px #000 solid;
+  outline: 0;
+}
+
+#checklist .dropdown>div>div:nth-of-type(2) {
+  box-sizing: border-box;
+  display: none;
+  position: absolute;
+  width: 100%;
+  background: #fff;
+}
+
+#checklist .dropdown>div>div:first-of-type:focus + div,
+#checklist .dropdown>div>div:nth-of-type(2):active {
+  display: block;
+}
+
+#checklist .dropdown>div>div:nth-of-type(2) div {
+  cursor: pointer;
+  padding: 10px;
+}
+
+#checklist .dropdown>div>div:nth-of-type(2) div:hover {
+  background: #eee;
+}
+
+
+/*
+  Radio selection
+*/
+
+#checklist .radio>div {
+  display: block;
+}
+
+#checklist .radio input[type="radio"] {
+  position: relative;
+  margin: 15px 0;
+  -webkit-appearance: none;
+  outline: 0;
+}
+#checklist .radio input[type="radio"]:before {
+  content: attr(value);
+  padding: 10px;
+  background: #444;
+  color: #fff;
+  cursor: pointer;
+}
+
+#checklist .radio input[type="radio"]:checked:before {
+  background: #fff;
+  color: #111;
+}
+
+
+/*
+  Voting statement
+*/
 
 #statement [contenteditable] {
   /* display: inline-block;
@@ -109,77 +199,5 @@ body>div:first-of-type p {
   padding: 10px;
   background: #444;
   color: #fff;
-}
-
-
-#js-write h2,
-#js-write input[type="text"],
-#js-write textarea,
-#js-write #js-submit {
-  box-sizing: border-box;
-  display: block;
-  width: 100%;
-}
-
-#js-write input[type="text"],
-#js-write textarea {
-  margin: 10px 0;
-  padding: calc(15px + 1.3em) 15px 15px;
-  background-color: rgba(255, 255, 255, 0.6);
-  background-image: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  -webkit-appearance: none;
-  border: 0;
-  outline: 0;
-  resize: none;
-  cursor: text;
-  font-size: 1em;
-  font-family: helvetica, arial, sans-serif;
-  line-height: 1.15;
-  overflow: hidden;
-}
-
-#js-write input[type="text"]:hover,
-#js-write textarea:hover {
-  background-color: rgba(245, 245, 245, 0.6);
-}
-
-#js-write div:first-of-type,
-#js-write div:nth-of-type(2) {
-  position: relative;
-}
-
-#js-write label:not([for="js-confirm"]) {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  font-size: .8em;
-  font-family: helvetica, arial, sans-serif;
-  line-height: 1.15;
-}
-
-#js-write div:nth-of-type(3) input[type="checkbox"] {
-  display: inline;
-}
-
-#js-write div:nth-of-type(3) label {
-  display: inline;
-  position: relative;
-}
-
-#js-write #js-submit {
-  margin-top: 15px;
-  padding: 15px 0;
-  background: #444;
-  color: #fff;
-  text-align: center;
   cursor: pointer;
-}
-
-#js-write.submitted {
-  padding: 10px;
-  border: 2px #111 solid;
-  text-align: center;
 }
