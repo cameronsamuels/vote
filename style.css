@@ -114,6 +114,14 @@ body>div:first-of-type p {
   font-size: .8em;
 }
 
+.large {
+  box-sizing: border-box;
+  padding: 15px;
+  background: rgba(255,255,255,.3);
+  border-radius: 20px;
+  font-size: 1.25em;
+}
+
 
 /*
   Dropdown selection
@@ -125,10 +133,10 @@ body>div:first-of-type p {
 }
 
 #checklist .dropdown>div>div:first-of-type {
-  min-width: 80px;
-  height: 1em;
+  min-width: 120px;
   border-bottom: 1px #000 solid;
   outline: 0;
+  font-size: 16px;
 }
 
 #checklist .dropdown>div>div:nth-of-type(2) {

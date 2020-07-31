@@ -26,7 +26,7 @@
     
     <div>
       <ul id="checklist">
-        <li>
+        <li class="large">
           <input id="register" type="checkbox">
           <label for="register">Register before the state-specific deadline</label>
           <span>Your deadline in Texas is October 5. Visit the <a href="">Secretary of State website</a> to register in person or by mail.</span>
@@ -71,7 +71,7 @@
           <input id="lookup-dates" type="checkbox">
           <label for="lookup-dates">Voting dates</label>
           <span>Early voting starts on Tuesday, October 13 and ends on October 30. Election day is on Tuesday, November 3.</span>
-          <span class="dropdown">
+          <span id="select-date" class="dropdown">
             I will vote on:
             <div>
               <div contenteditable></div>
@@ -88,8 +88,24 @@
         </li>
         <li class="sub">
           <input id="lookup-id" type="checkbox">
-          <label for="lookup-id">Verify that you have an acceptable voter IDs</label>
+          <label for="lookup-id">Verify that you have an acceptable voter ID</label>
           <span>You must need one of the seven acceptable forms of photo ID to vote, but bring more just in case. View them on the <a href="https://www.votetexas.gov/register-to-vote/need-id.html">Vote Texas website</a>.</span>
+          <span id="select-id" class="dropdown">
+            I have:
+            <div>
+              <div contenteditable></div>
+              <div>
+                <div>Texas Driver License</div>
+                <div>Texas Election ID Certificate</div>
+                <div>Texas Personal ID Card</div>
+                <div>Texas Handgun License</div>
+                <div>US Citizenship Certificate with Photo</div>
+                <div>US Military ID Card with Photo</div>
+                <div>US Passport (book or card)</div>
+                <div>?? Reasonable Impediment Declaration ??</div>
+              </div>
+            </div>
+          </span>
         </li>
         <li class="sub">
           <input id="lookup-covid" type="checkbox">
@@ -114,12 +130,13 @@
 
     <div id="statement">
       <h2>My Voting Plan</h2>
-      <div>I will vote on <span id="statement-date" contenteditable>[ date ]</span> at <span contenteditable>[ location ]</span> <span contenteditable>[ relative time ]</span></div>
+      <div>I will vote on <span id="statement-date" contenteditable>[ date ]</span> at <span contenteditable>[ location ]</span> <span contenteditable>[ relative time ]</span>. I will be getting there by <span contenteditable>[ transportation ]</span>, and I will remember to bring my <span id="statement-id" contenteditable>[ voter ID ]</span></div>
       <div id="print-statement" class="button">Print Hard Copy</div>
       <a id="add-to-calendar"><div class="button">Add to Calendar</div></a>
     </div>
 
     <script src="script.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=loadGAPI"></script>
     
   </body>
   
