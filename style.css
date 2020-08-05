@@ -72,10 +72,21 @@ body>div:first-of-type p {
 }
 
 #checklist label {
+  font-size: 1em;
   cursor: pointer;
 }
 
+#checklist label a {
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+#checklist label a img {
+  height: 1em;
+}
+
 #checklist input[type="checkbox"] {
+  position: relative;
   -webkit-appearance: none;
   padding: 10px;
   background: transparent;
@@ -99,7 +110,13 @@ body>div:first-of-type p {
 }
 
 #checklist input[type="checkbox"]:checked:before {
-  /* content: "x"; */
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background: url(images/check.svg) center/cover no-repeat;
 }
 
 #checklist input[type="checkbox"]:checked + label {
@@ -145,6 +162,7 @@ body>div:first-of-type p {
   position: absolute;
   width: 100%;
   background: #fff;
+  z-index: 1;
 }
 
 #checklist .dropdown>div>div:first-of-type:focus + div,

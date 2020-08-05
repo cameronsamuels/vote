@@ -13,8 +13,8 @@
   <body>
 
     <header>
-      <strong><a href="../index.html">Lorem ipsum</a> &mdash;</strong>
-      Lorem ipsum
+      <strong><a href="../index.html">Register to vote</a> &mdash;</strong>
+      <span id="countdown"></span>
     </header>
       
     <div>
@@ -29,7 +29,7 @@
         <li class="large">
           <input id="register" type="checkbox">
           <label for="register">Register before the state-specific deadline</label>
-          <span>Your deadline in Texas is October 5. Visit the <a href="">Secretary of State website</a> to register in person or by mail.</span>
+          <span>The deadline in Texas is October 5. Visit the <a href="">Secretary of State website</a> to register in person or by mail.</span>
         </li>
         <li>
           <input id="verify-registration" type="checkbox">
@@ -70,14 +70,13 @@
         <li class="sub appearance">
           <input id="lookup-dates" type="checkbox">
           <label for="lookup-dates">Voting dates</label>
-          <span>Early voting starts on Tuesday, October 13 and ends on October 30. Election day is on Tuesday, November 3.</span>
+          <span>Election day is Tuesday, November 3, but you can vote as early as October 13.</span>
           <span id="select-date" class="dropdown">
             I will vote on:
             <div>
               <div contenteditable></div>
               <div>
-                <div>Tue, October 13</div>
-                <div>Wed, October 14</div>
+                <!-- <div>Tue, October 13</div> -->
               </div>
             </div>
           </span>
@@ -88,8 +87,8 @@
         </li>
         <li class="sub">
           <input id="lookup-id" type="checkbox">
-          <label for="lookup-id">Verify that you have an acceptable voter ID</label>
-          <span>You must need one of the seven acceptable forms of photo ID to vote, but bring more just in case. View them on the <a href="https://www.votetexas.gov/register-to-vote/need-id.html">Vote Texas website</a>.</span>
+          <label for="lookup-id">Verify that you have an acceptable voter ID<a href="https://www.votetexas.gov/register-to-vote/need-id.html"><img alt="More info" src="images/info.svg"></a></label>
+          <span>You need one of the seven acceptable forms of photo ID to vote in Texas</span>
           <span id="select-id" class="dropdown">
             I have:
             <div>
@@ -115,6 +114,11 @@
           <input id="determine-transportation" type="checkbox">
           <label for="determine-transportation">Determine your transportation</label>
           <span>Will you be driving, biking, getting a ride from someone else, or getting to the polls by other means? Figure this out ahead of time and always have a backup.</span>
+        </li>
+        <li>
+          <input id="sample-ballot" type="checkbox">
+          <label for="sample-ballot">View your sample ballot</label>
+          <span>Know your candidates and who you will be voting for. Be informed and do not hold up the line.</span>
         </li>
         <li>
           <input id="save-hotline" type="checkbox">
