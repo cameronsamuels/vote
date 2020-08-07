@@ -9,6 +9,35 @@
 })();
 
 
+// Show details
+(function() {
+  document.querySelector("#show-details").addEventListener("change", function() {
+    if (this.checked) document.body.classList.add("details");
+    else document.body.classList.remove("details");
+  });
+})();
+
+
+// Checkbox
+(function() {
+  var els = document.querySelectorAll("#checklist input[type='checkbox']");
+  function checkChange() {
+    var checks = document.querySelectorAll("#checklist input[type='checkbox']");
+    var first = false;
+    for (let i = 0; i < checks.length; i++) {
+      if (checks[i].checked || first)
+        checks[i].parentElement.classList.remove("large");
+      else if (!first) {
+        checks[i].parentElement.classList.add("large");
+        first = true;
+      }
+    }
+  }
+  for (let i = 0; i < els.length; i++)
+    els[i].addEventListener("change", checkChange);
+})();
+
+
 // Voting method selection
 (function() {
   function selectVoteMethod() {
@@ -31,10 +60,15 @@
     var els = document.querySelectorAll("#" + dropdown + ">div>div>div");
     for (let i = 0; i < els.length; i++)
       els[i].addEventListener("click", action);
+    document.querySelector("#" + dropdown + ">div>div").addEventListener("input", action);
   }
   createDropdownEvents("select-id", function(e) {
     document.querySelector("#select-id>div>div").textContent = e.target.textContent;
     document.querySelector("#statement-id").textContent = e.target.textContent;
+  });
+  createDropdownEvents("select-transportation", function(e) {
+    document.querySelector("#select-transportation>div>div").textContent = e.target.textContent;
+    document.querySelector("#statement-transportation").textContent = e.target.textContent;
   });
 })();
 
@@ -61,33 +95,33 @@
 
 
 // Voting place selection
-function loadGAPI() {
-  gapi.client.setApiKey("AIzaSyBNWmDwDM49_L2RmNyRVX6veBXneKEGNF4");
-  lookup('1263 Pacific Ave. Kansas City KS', renderResults);
-}
+// function loadGAPI() {
+//   gapi.client.setApiKey("AIzaSyBNWmDwDM49_L2RmNyRVX6veBXneKEGNF4");
+//   lookup('1263 Pacific Ave. Kansas City KS', renderResults);
+// }
 
-function lookup(address, callback) {
-  var electionId = 2000;
-  var req = gapi.client.request({
-    // "path" : "/civicinfo/v2/elections"
-    "path" : "/civicinfo/v2/voterinfo",
-    "params" : {"electionId" : electionId, "address" : address}
-  });
+// function lookup(address, callback) {
+//   var electionId = 2000;
+//   var req = gapi.client.request({
+//     // "path" : "/civicinfo/v2/elections"
+//     "path" : "/civicinfo/v2/voterinfo",
+//     "params" : {"electionId" : electionId, "address" : address}
+//   });
 
-  req.execute(callback);
-}
+//   req.execute(callback);
+// }
 
-function renderResults(response, rawResponse) {
-  var polls = response.pollingLocations;
-  for (let i = 0; i < polls.length; i++) {
-    var address = Object.values(polls[i].address);
-    var filtered = address.filter(function(el) {
-      return el != "";
-    }).join(", ");
-    console.log(filtered);
-    console.log(polls[i].pollingHours);
-  }
-}
+// function renderResults(response, rawResponse) {
+//   var polls = response.pollingLocations;
+//   for (let i = 0; i < polls.length; i++) {
+//     var address = Object.values(polls[i].address);
+//     var filtered = address.filter(function(el) {
+//       return el != "";
+//     }).join(", ");
+//     console.log(filtered);
+//     console.log(polls[i].pollingHours);
+//   }
+// }
 
 
 // Print statement

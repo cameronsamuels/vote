@@ -63,6 +63,10 @@ body>div:first-of-type p {
   list-style-type: none;
 }
 
+#checklist li:first-of-type h2 {
+  margin-top: 0;
+}
+
 #checklist li {
   margin-bottom: 1em;
 }
@@ -129,6 +133,11 @@ body>div:first-of-type p {
   margin-bottom: 5px;
   padding-left: 45px;
   font-size: .8em;
+}
+
+#checklist .large span {
+  padding-left: 0;
+  padding-top: 10px;
 }
 
 .large {
@@ -226,4 +235,27 @@ body>div:first-of-type p {
   background: #444;
   color: #fff;
   cursor: pointer;
+}
+
+
+/*
+  Details
+*/
+.detail {
+  display: none !important;
+}
+.details .detail,
+.large .detail {
+  display: block !important;
+}
+
+
+/*
+  Texas checklist
+*/
+#texas:not(:target) .texas {
+  display: none !important;
+}
+#texas:target .generic {
+  display: none !important;
 }
