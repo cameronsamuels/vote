@@ -198,10 +198,14 @@ body>div:first-of-type p {
 }
 
 #checklist .radio input[type="radio"] {
+  display: inline-block;
   position: relative;
+  width: auto;
   margin: 15px 0;
   -webkit-appearance: none;
   outline: 0;
+  border: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 #checklist .radio input[type="radio"]:before {
   content: attr(value);
