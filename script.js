@@ -21,7 +21,7 @@
 // Checkbox
 (function() {
   var els = document.querySelectorAll("#checklist input[type='checkbox']");
-  window.checkChange = function() {
+  window.checkChange = function(e) {
     var checks = document.querySelectorAll("#checklist input[type='checkbox']");
     var first = false;
     for (let i = 0; i < checks.length; i++) {
@@ -32,9 +32,21 @@
         first = true;
       }
     }
+    if (e) localStorage[e.target.id] = e.target.checked;
   }
   for (let i = 0; i < els.length; i++)
     els[i].addEventListener("change", checkChange);
+})();
+
+
+// Saved checklist
+(function() {
+  var els = document.querySelectorAll("#checklist input[type='checkbox']");
+  for (let i = 0; i < els.length; i++) {
+    if (localStorage[els[i].id])
+      els[i].checked = localStorage[els[i].id] == "true";
+  }
+  checkChange();
 })();
 
 
@@ -48,6 +60,8 @@
     els = document.querySelectorAll(".appearance");
     for (let i = 0; i < els.length; i++)
       els[i].style.display = absentee ? "none" : "";
+    document.querySelector("#choose-method").checked = true;
+    localStorage["choose-method"] = true;
     checkChange();
   }
   document.querySelector("#vote-in-person").addEventListener("change", selectVoteMethod);
@@ -59,8 +73,15 @@
 (function() {
   function createDropdownEvents(dropdown, action) {
     var els = document.querySelectorAll("#" + dropdown + ">div>div>div");
-    for (let i = 0; i < els.length; i++)
+    for (let i = 0; i < els.length; i++) {
       els[i].addEventListener("click", action);
+      els[i].addEventListener("click", function(e) {
+        var el = e.target.parentElement.parentElement.parentElement.parentElement.querySelector("input[type='checkbox']");
+        el.checked = true;
+        localStorage[el.id] = true;
+        checkChange();
+      });
+    }
     document.querySelector("#" + dropdown + ">div>div").addEventListener("input", action);
   }
   createDropdownEvents("select-id", function(e) {
@@ -97,6 +118,10 @@
     el.addEventListener("click", function(e) {
       document.querySelector("#select-date>div>div").textContent = e.target.textContent;
       document.querySelector("#statement-date").textContent = e.target.textContent;
+      var el = e.target.parentElement.parentElement.parentElement.parentElement.querySelector("input[type='checkbox']");
+      el.checked = true;
+      localStorage[el.id] = true;
+      checkChange();
     });
     drop.appendChild(el);
   }
@@ -158,18 +183,4 @@ function updateAddToCalendar() {
 
   var url = "http://www.google.com/calendar/event?action=TEMPLATE&dates=" + start + "%2F" + end + "&text=" + title + "&location=" + location + "&details=" + details;
   document.querySelector("#add-to-calendar").href = url;
-}
-function createICal() {
-	var calyr = "2020";
-	var calMo = "9";
-	var calda = "13";
-	var calset = calyr + calMo + calda;
-  document.write("<p>BEGIN:VCALENDAR<br />VERSION:2.0<br />X-WR-CALNAME:WEEKNUMBERS<br />X-WR-TIMEZONE:America/Chicago<br />CALSCALE:GREGORIAN</p>");
-  document.write("<p>" + "BEGIN:VEVENT" + "<br />");
-  document.write("DTSTART;VALUE=DATE:" + calset + "<br />");
-  document.write("DTEND;VALUE=DATE:" + calset + "<br />");
-  document.write("SUMMARY:Vote in the Election!<br />");
-  document.write("X-GOOGLE-CALENDAR-CONTENT-TITLE:Vote in the Election<br />");
-  document.write("X-GOOGLE-CALENDAR-CONTENT-TYPE:text/html <br />");
-  document.write("END:VEVENT </p>");
 }

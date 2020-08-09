@@ -63,15 +63,12 @@ body>div:first-of-type p {
   list-style-type: none;
 }
 
-#checklist li:first-of-type h2 {
+#checklist>h2:first-child {
   margin-top: 0;
 }
 
 #checklist li {
   margin-bottom: 1em;
-}
-
-#checklist li.sub {
   padding-left: 30px;
 }
 
@@ -109,7 +106,7 @@ body>div:first-of-type p {
 
 #checklist input[type="checkbox"]:checked,
 #checklist input[type="checkbox"]:checked + label,
-#checklist input[type="checkbox"]:checked + label + span {
+#checklist input[type="checkbox"]:checked + label + span.detail {
   opacity: .5;
 }
 
@@ -128,14 +125,21 @@ body>div:first-of-type p {
   text-decoration: line-through;
 }
 
-#checklist span {
+#checklist .detail,
+#checklist .detail + span {
   display: block;
   margin-bottom: 5px;
   padding-left: 45px;
   font-size: .8em;
 }
 
-#checklist .large span {
+#checklist .detail span {
+  display: block;
+  margin-bottom: .5em;
+}
+
+#checklist .large .detail,
+#checklist .large .detail + span {
   padding-left: 0;
   padding-top: 10px;
 }
@@ -193,7 +197,7 @@ body>div:first-of-type p {
   Radio selection
 */
 
-#checklist .radio>div {
+#checklist .radio {
   display: block;
 }
 
@@ -225,14 +229,26 @@ body>div:first-of-type p {
   Voting statement
 */
 
-#statement [contenteditable] {
-  /* display: inline-block;
-  min-width: 80px; */
+ul li:last-child h2 {
+  margin: .5em 0;
+}
+
+ul li:last-child .detail {
+  padding-top: 0 !important;
+}
+
+ul li:last-child div {
+  font-size: .8em;
+}
+
+ul li:last-child [contenteditable] {
+  display: inline !important;
+  /* min-width: 80px; */
   border-bottom: 1px #000 solid;
   text-align: center;
 }
 
-#statement div.button {
+ul li:last-child .button {
   display: inline-block;
   margin: 10px;
   padding: 10px;
