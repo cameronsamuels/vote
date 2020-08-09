@@ -237,8 +237,9 @@ ul li:last-child .detail {
   padding-top: 0 !important;
 }
 
-ul li:last-child div {
-  font-size: .8em;
+ul li:last-child>div {
+  display: inline-block;
+  font-size: .8em !important;
 }
 
 ul li:last-child [contenteditable] {
@@ -248,13 +249,18 @@ ul li:last-child [contenteditable] {
   text-align: center;
 }
 
-ul li:last-child .button {
+ul li:last-child div.button {
   display: inline-block;
   margin: 10px;
   padding: 10px;
   background: #444;
-  color: #fff;
+  color: #fff !important;
+  border-radius: 3px;
   cursor: pointer;
+}
+
+.addeventatc_icon {
+  display: none !important;
 }
 
 

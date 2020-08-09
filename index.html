@@ -8,6 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
   </head>
   
   <body id="texas">
@@ -190,11 +191,18 @@
           <h2>Save your voting statement</h2>
           <span class="detail">
             <span>Hold yourself accountable by printing or saving in your calendar the voting plan statement that was just made by you completing this checklist.</span>
-            <span class="appearance">I will vote on <span id="statement-date" contenteditable>[ date ]</span> at <span id="statement-location" contenteditable>[ location ]</span> at <span id="statement-time" contenteditable>[ relative or exact time ]</span>. I will be getting there by <span id="statement-transportation" contenteditable>[ transportation ]</span>, and I will remember to bring my <span id="statement-id" contenteditable>[ voter ID ]</span></span>
-            <span class="absentee">I will be voting by mail, and I will remember to ...</span>
+            <span class="appearance statement">I will vote on <span id="statement-date" contenteditable>[ date ]</span> at <span id="statement-location" contenteditable>[ location ]</span> at <span id="statement-time" contenteditable>[ relative or exact time ]</span>. I will be getting there by <span id="statement-transportation" contenteditable>[ transportation ]</span>, and I will remember to bring my <span id="statement-id" contenteditable>[ voter ID ]</span></span>
+            <span class="absentee statement">I will be voting by mail, and I will remember to ...</span>
           </span>
           <div id="print-statement" class="button">Print Hard Copy</div>
-          <a id="add-to-calendar"><div class="button">Add to Calendar</div></a>
+          <div class="addeventatc button">
+            Add to Calendar
+            <span class="start">11/03/2020 07:00 AM</span>
+            <span class="location"></span>
+            <span class="title">Vote in the election!</span>
+            <span class="description"><p></p><p>View the voting checklist at https://cameronsamuels.com/vote</p></span>
+            <span class="alarm_reminder">1440</span>
+          </div>
         </li>
       </ul>
     </div>

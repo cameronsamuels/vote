@@ -165,22 +165,17 @@ document.querySelector("#print-statement").addEventListener("click", function() 
 
 
 // Add statement to calendar
-function updateAddToCalendar() {
-  var start = "20201103T073000Z";
-  var end = "20201103T83000Z";
-  var title = "Vote in the Election!";
-  var location = "Polling Place";
-  var details = "{voting statement}<br>View the voting checklist at <a href=\"https://cameronsamuels.com/vote\">cameronsamuels.com/vote</a>";
+document.querySelector(".addeventatc").addEventListener("click", function() {
 
-  function removeWhitespace(x) {
-    while (x.includes(" "))
-      x = x.replace(" ", "%20");
-    return x;
-  }
-  title = removeWhitespace(title);
-  location = removeWhitespace(location);
-  details = removeWhitespace(details);
+  var statement = document.querySelector(".statement.appearance");
+  var date = statement.querySelector("#statement-date").textContent;
+  var time = statement.querySelector("#statement-time").textContent;
+  var datetime = date + time; // TODO "08/22/2020 08:00 AM"
+  var location = statement.querySelector("#statement-location").textContent;
 
-  var url = "http://www.google.com/calendar/event?action=TEMPLATE&dates=" + start + "%2F" + end + "&text=" + title + "&location=" + location + "&details=" + details;
-  document.querySelector("#add-to-calendar").href = url;
-}
+  var button = document.querySelector(".addeventatc");
+  button.querySelector(".start").textContent = datetime;
+  button.querySelector(".location").textContent = location;
+  button.querySelector(".description p").textContent = statement.textContent;
+  
+});
