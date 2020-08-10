@@ -31,8 +31,8 @@
         checks[i].parentElement.classList.add("large");
         first = true;
       }
+      localStorage[checks[i].id] = checks[i].checked;
     }
-    if (e) localStorage[e.target.id] = e.target.checked;
   }
   for (let i = 0; i < els.length; i++)
     els[i].addEventListener("change", checkChange);
@@ -46,8 +46,23 @@
     if (localStorage[els[i].id])
       els[i].checked = localStorage[els[i].id] == "true";
   }
+  var els = document.querySelectorAll("#checklist li [contenteditable]");
+  for (let i = 0; i < els.length; i++) {
+    var val = els[i].parentElement.parentElement.id;
+    if (localStorage[val])
+      els[i].textContent = localStorage[val];
+  }
   checkChange();
 })();
+
+
+// Clear checklist
+function clearChecklist() {
+  var els = document.querySelectorAll("#checklist input[type='checkbox']");
+  for (let i = 0; i < els.length; i++)
+    els[i].checked = false;
+  checkChange();
+}
 
 
 // Voting method selection
@@ -87,18 +102,22 @@
   createDropdownEvents("select-id", function(e) {
     document.querySelector("#select-id>div>div").textContent = e.target.textContent;
     document.querySelector("#statement-id").textContent = e.target.textContent;
+    localStorage["select-id"] = e.target.textContent;
   });
   createDropdownEvents("select-transportation", function(e) {
     document.querySelector("#select-transportation>div>div").textContent = e.target.textContent;
     document.querySelector("#statement-transportation").textContent = e.target.textContent;
+    localStorage["select-transportation"] = e.target.textContent;
   });
   createDropdownEvents("select-time", function(e) {
     document.querySelector("#select-time>div>div").textContent = e.target.textContent;
     document.querySelector("#statement-time").textContent = e.target.textContent;
+    localStorage["select-time"] = e.target.textContent;
   });
   createDropdownEvents("select-location", function(e) {
     document.querySelector("#select-location>div>div").textContent = e.target.textContent;
     document.querySelector("#statement-location").textContent = e.target.textContent;
+    localStorage["select-location"] = e.target.textContent;
   });
 })();
 
@@ -118,6 +137,7 @@
     el.addEventListener("click", function(e) {
       document.querySelector("#select-date>div>div").textContent = e.target.textContent;
       document.querySelector("#statement-date").textContent = e.target.textContent;
+      localStorage["select-date"] = e.target.textContent;
       var el = e.target.parentElement.parentElement.parentElement.parentElement.querySelector("input[type='checkbox']");
       el.checked = true;
       localStorage[el.id] = true;
@@ -156,6 +176,12 @@
 //     console.log(polls[i].pollingHours);
 //   }
 // }
+
+
+// Passting in text
+document.body.onpaste = function(e) {
+  return false;
+};
 
 
 // Print statement
