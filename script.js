@@ -9,15 +9,6 @@
 })();
 
 
-// Show details
-(function() {
-  document.querySelector("#show-details").addEventListener("change", function() {
-    if (this.checked) document.body.classList.add("details");
-    else document.body.classList.remove("details");
-  });
-})();
-
-
 // Checkbox
 (function() {
   var els = document.querySelectorAll("#checklist input[type='checkbox']");
@@ -25,9 +16,12 @@
     var checks = document.querySelectorAll("#checklist input[type='checkbox']");
     var first = false;
     for (let i = 0; i < checks.length; i++) {
-      if (checks[i].checked || first || checks[i].parentElement.style.display)
+      var visible = checks[i].parentElement.parentElement.tagName == "UL"
+        || (checks[i].parentElement.parentElement.tagName == "DIV"
+        && !checks[i].parentElement.parentElement.style.display);
+      if (checks[i].checked || first || !visible)
         checks[i].parentElement.classList.remove("large");
-      else if (!first && !checks[i].parentElement.style.display) {
+      else if (!first && visible) {
         checks[i].parentElement.classList.add("large");
         first = true;
       }
@@ -36,6 +30,28 @@
   }
   for (let i = 0; i < els.length; i++)
     els[i].addEventListener("change", checkChange);
+})();
+
+
+// Voting method selection
+(function() {
+  window.selectVoteMethod = function() {
+    var absentee = document.querySelector("#vote-by-mail").checked;
+    var els = document.querySelectorAll(".absentee");
+    for (let i = 0; i < els.length; i++)
+      els[i].style.display = absentee ? "" : "none";
+    els = document.querySelectorAll(".appearance");
+    for (let i = 0; i < els.length; i++)
+      els[i].style.display = absentee ? "none" : "";
+    checkChange();
+  }
+  function voteMethodChange() {
+    document.querySelector("#choose-method").checked = true;
+    localStorage["vote-by-mail"] = document.querySelector("#vote-by-mail").checked;
+    selectVoteMethod();
+  }
+  document.querySelector("#vote-in-person").addEventListener("change", voteMethodChange);
+  document.querySelector("#vote-by-mail").addEventListener("change", voteMethodChange);
 })();
 
 
@@ -52,35 +68,43 @@
     if (localStorage[val])
       els[i].textContent = localStorage[val];
   }
-  checkChange();
+  var absentee = localStorage["vote-by-mail"] == "true";
+  document.querySelector("#vote-by-mail").checked = absentee;
+  document.querySelector("#vote-in-person").checked = !absentee;
+  selectVoteMethod();
 })();
 
 
 // Clear checklist
-function clearChecklist() {
+document.querySelector("#clear-checklist").addEventListener("click", function() {
   var els = document.querySelectorAll("#checklist input[type='checkbox']");
   for (let i = 0; i < els.length; i++)
     els[i].checked = false;
   checkChange();
-}
+});
 
 
-// Voting method selection
+// Show details
+document.querySelector("#show-details").addEventListener("click", function() {
+  document.body.classList.toggle("details");
+  this.textContent = this.textContent == "Hide details" ? "Show details" : "Hide details";
+});
+
+
+// Voting date selection
 (function() {
-  function selectVoteMethod() {
-    var absentee = document.querySelector("#vote-by-mail").checked;
-    var els = document.querySelectorAll(".absentee");
-    for (let i = 0; i < els.length; i++)
-      els[i].style.display = absentee ? "" : "none";
-    els = document.querySelectorAll(".appearance");
-    for (let i = 0; i < els.length; i++)
-      els[i].style.display = absentee ? "none" : "";
-    document.querySelector("#choose-method").checked = true;
-    localStorage["choose-method"] = true;
-    checkChange();
+  var drop = document.querySelector("#select-date>div>div:nth-of-type(2)");
+  var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  var dates = ["13", "14", "15", "16", "18"]; // TODO
+  for (let i = 0; i < dates.length; i++) {
+    var date = new Date("October " + dates[i] + ", 2020 19:00:00");
+    if (new Date() > date)
+      continue;
+    var str = days[date.getDay()] + ", October " + date.getDate();
+    var el = document.createElement("div");
+    el.textContent = str;
+    drop.appendChild(el);
   }
-  document.querySelector("#vote-in-person").addEventListener("change", selectVoteMethod);
-  document.querySelector("#vote-by-mail").addEventListener("change", selectVoteMethod);
 })();
 
 
@@ -119,32 +143,11 @@ function clearChecklist() {
     document.querySelector("#statement-location").textContent = e.target.textContent;
     localStorage["select-location"] = e.target.textContent;
   });
-})();
-
-
-// Voting date selection
-(function() {
-  var drop = document.querySelector("#select-date>div>div:nth-of-type(2)");
-  var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  var dates = ["13", "14", "15", "16", "18"]; // TODO
-  for (let i = 0; i < dates.length; i++) {
-    var date = new Date("October " + dates[i] + ", 2020 19:00:00");
-    if (new Date() > date)
-      continue;
-    var str = days[date.getDay()] + ", October " + date.getDate();
-    var el = document.createElement("div");
-    el.textContent = str;
-    el.addEventListener("click", function(e) {
-      document.querySelector("#select-date>div>div").textContent = e.target.textContent;
-      document.querySelector("#statement-date").textContent = e.target.textContent;
-      localStorage["select-date"] = e.target.textContent;
-      var el = e.target.parentElement.parentElement.parentElement.parentElement.querySelector("input[type='checkbox']");
-      el.checked = true;
-      localStorage[el.id] = true;
-      checkChange();
-    });
-    drop.appendChild(el);
-  }
+  createDropdownEvents("select-date", function(e) {
+    document.querySelector("#select-date>div>div").textContent = e.target.textContent;
+    document.querySelector("#statement-date").textContent = e.target.textContent;
+    localStorage["select-date"] = e.target.textContent;
+  });
 })();
 
 
@@ -192,16 +195,13 @@ document.querySelector("#print-statement").addEventListener("click", function() 
 
 // Add statement to calendar
 document.querySelector(".addeventatc").addEventListener("click", function() {
-
   var statement = document.querySelector(".statement.appearance");
   var date = statement.querySelector("#statement-date").textContent;
   var time = statement.querySelector("#statement-time").textContent;
   var datetime = date + time; // TODO "08/22/2020 08:00 AM"
   var location = statement.querySelector("#statement-location").textContent;
-
   var button = document.querySelector(".addeventatc");
   button.querySelector(".start").textContent = datetime;
   button.querySelector(".location").textContent = location;
   button.querySelector(".description p").textContent = statement.textContent;
-  
 });
