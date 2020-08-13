@@ -154,6 +154,41 @@ body>div:first-of-type p {
 
 
 /*
+  Location picker
+*/
+
+input[type="text"] {
+  -webkit-appearance: none;
+  min-width: 120px;
+  padding: 4px;
+  background: transparent;
+  color: #111;
+  border: 1px #000 solid;
+  border-radius: 0;
+  box-shadow: none;
+  outline: 0;
+  font-size: 16px;
+}
+
+
+/*
+  Date/time picker
+*/
+
+input[type="date"],
+input[type="time"] {
+  min-height: 16px;
+  border: 1px solid #444;
+  border-radius: 0;
+  background: transparent;
+  padding: 3px 5px;
+  box-shadow: none;
+  outline: 0;
+  font-size: 16px;
+}
+
+
+/*
   Dropdown selection
 */
 
@@ -164,7 +199,8 @@ body>div:first-of-type p {
 
 #checklist .dropdown>div>div:first-of-type {
   min-width: 120px;
-  border-bottom: 1px #000 solid;
+  padding: 4px;
+  border: 1px #000 solid;
   outline: 0;
   font-size: 16px;
 }

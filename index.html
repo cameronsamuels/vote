@@ -89,12 +89,9 @@
               <span class="texas">Visit the <a href="https://teamrv-mvp.sos.texas.gov/MVP/mvp.do">Secretary of State website</a> to find your polling location(s).</span>
               <span class="generic">Make sure you know where you will be voting.</span>
             </span>
-            <span id="select-location" class="dropdown">
+            <span id="select-location">
               The location I will vote at:
-              <div>
-                <div contenteditable></div>
-                <div></div>
-              </div>
+              <input id="location" type="text">
             </span>
           </li>
           <li>
@@ -104,14 +101,9 @@
               <span class="texas">Election Day is Tuesday, November 3, but you can vote in-person as early as October 13 in Texas.</span>
               <span class="generic">Election Day is Tuesday, November 3, but you can vote in-person before then if your state provides an early voting window.</span>
             </span>
-            <span id="select-date" class="dropdown">
+            <span id="select-date">
               The day I will vote on:
-              <div>
-                <div contenteditable></div>
-                <div class="texas">
-                  <!-- <div>Tue, October 13</div> -->
-                </div>
-              </div>
+              <input type="date">
             </span>
           </li>
           <li>
@@ -122,14 +114,9 @@
               <span class="texas">Visit the <a href="https://teamrv-mvp.sos.texas.gov/MVP/mvp.do">Secretary of State website</a> to find the hours of your polling location(s).</span>
               <span class="generic">Know what time your polling location(s) are open to coordinate when you will be voting.</span>
             </span>
-            <span id="select-time" class="dropdown">
+            <span id="select-time">
               The time I will vote at:
-              <div>
-                <div contenteditable></div>
-                <div class="texas">
-  
-                </div>
-              </div>
+              <input type="time">
             </span>
           </li>
           <li>
@@ -210,6 +197,8 @@
       </ul>
     </div>
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNWmDwDM49_L2RmNyRVX6veBXneKEGNF4&libraries=places&callback=initMap"
+        defer></script>
     <script src="script.js"></script>
     
   </body>

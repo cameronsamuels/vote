@@ -1,11 +1,19 @@
 // Code by Cameron Samuels
 
 
-// Countdown
+// Temporary features
 (function() {
+  // Countdown
   var el = document.querySelector("#countdown");
   var d = new Date("October 5, 2020 11:59:59") - new Date();
   el.textContent = "The deadline to register to vote in Texas is in " + Math.floor(d / 86400000) + " days";
+  // November 3 election
+  var el = document.querySelector("#select-date input[type='date']");
+  var today = new Date();
+  var dd = (today.getDate() < 10 ? "0" : "") + today.getDate();
+  var mm = (today.getMonth() + 1 < 10 ? "0" : "") + (today.getMonth() + 1);
+  el.setAttribute("min", "2020-" + mm + "-" + dd);
+  el.setAttribute("max", "2020-11-03");
 })();
 
 
@@ -77,11 +85,18 @@
     if (localStorage[els[i].id])
       els[i].checked = localStorage[els[i].id] == "true";
   }
+  // delete contenteditable below
   var els = document.querySelectorAll("#checklist li [contenteditable]");
   for (let i = 0; i < els.length; i++) {
     var val = els[i].parentElement.parentElement.id;
     if (localStorage[val])
       els[i].textContent = localStorage[val];
+  }
+  var els = document.querySelectorAll("#checklist li input:not([type='checkbox']):not([type='radio'])");
+  for (let i = 0; i < els.length; i++) {
+    var val = els[i].parentElement.id;
+    if (localStorage[val])
+      els[i].value = localStorage[val];
   }
   if (localStorage["vote-by-mail"]) {
     var absentee = localStorage["vote-by-mail"] == "true";
@@ -112,20 +127,67 @@ document.querySelector("#show-details").addEventListener("click", function() {
 });
 
 
+// Location selection
+function initMap() {
+  var input = document.querySelector("#location");
+  var autocomplete = new google.maps.places.Autocomplete(input);
+
+  input.addEventListener("input", function() {
+    localStorage["select-location"] = this.value;
+    document.querySelector("#statement-location").textContent = this.value;
+  });
+
+  autocomplete.addListener('place_changed', function() {
+    var place = autocomplete.getPlace();
+    if (!place.geometry) {
+      // User entered the name of a Place that was not suggested and
+      // pressed the Enter key, or the Place Details request failed.
+      window.alert("No details available for input: '" + place.name + "'");
+      return;
+    }
+
+    var address = '';
+    if (place.address_components) {
+      address = [
+        (place.address_components[0] && place.address_components[0].short_name || ''),
+        (place.address_components[1] && place.address_components[1].short_name || ''),
+        (place.address_components[2] && place.address_components[2].short_name || '')
+      ].join(' ');
+    }
+
+    address = place.name + ", " + address;
+    document.querySelector("#statement-location").textContent = address;
+    localStorage["select-location"] = address;
+  });
+}
+
+
 // Voting date selection
 (function() {
-  var drop = document.querySelector("#select-date>div>div:nth-of-type(2)");
-  var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  var dates = ["13", "14", "15", "16", "18"]; // TODO
-  for (let i = 0; i < dates.length; i++) {
-    var date = new Date("October " + dates[i] + ", 2020 19:00:00");
-    if (new Date() > date)
-      continue;
-    var str = days[date.getDay()] + ", October " + date.getDate();
-    var el = document.createElement("div");
-    el.textContent = str;
-    drop.appendChild(el);
-  }
+  document.querySelector("#select-date>input[type='date']").addEventListener("input", function() {
+    var time = document.querySelector("#select-time>input[type='time']").value || "7:00 AM";
+    var date = new Date(this.value + " " + time).toLocaleString("default", { weekday: "long", month: "long", day: "numeric" });
+    document.querySelector("#statement-date").textContent = date;
+    localStorage["select-date"] = this.value;
+  });
+})();
+
+
+// Voting time selection
+(function() {
+  document.querySelector("#select-time>input[type='time']").addEventListener("input", function() {
+    var time = this.value;
+    var hour = parseInt(time.substring(0, 2));
+    var min = time.substring(3);
+    var period = "AM";
+    if (hour > 12) {
+      hour -= 12;
+      period = "PM";
+    }
+    time = hour + ":" + min + " " + period;
+    document.querySelector("#statement-time").textContent = time;
+    localStorage["select-time"] = this.value;
+  });
 })();
 
 
@@ -144,7 +206,8 @@ document.querySelector("#show-details").addEventListener("click", function() {
     document.querySelector(id.replace("select", "#statement")).textContent = e.target.textContent;
     localStorage[id] = e.target.textContent;
   }
-  ["id", "transportation", "time", "location", "date"].forEach(function(i) {
+  document.querySelectorAll(".dropdown").forEach(function(i) {
+    i = i.id.substring(7);
     var els = document.querySelectorAll("#select-" + i + ">div>div>div");
     for (let j = 0; j < els.length; j++)
       els[j].addEventListener("click", dropdownEvent);
