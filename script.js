@@ -37,12 +37,19 @@
 (function() {
   window.selectVoteMethod = function() {
     var absentee = document.querySelector("#vote-by-mail").checked;
-    var els = document.querySelectorAll(".absentee");
-    for (let i = 0; i < els.length; i++)
-      els[i].style.display = absentee ? "" : "none";
-    els = document.querySelectorAll(".appearance");
-    for (let i = 0; i < els.length; i++)
-      els[i].style.display = absentee ? "none" : "";
+    if (!absentee && !document.querySelector("#vote-in-person").checked) {
+      var els = Array.prototype.slice.call(document.querySelectorAll(".absentee")).concat(Array.prototype.slice.call(document.querySelectorAll(".appearance")));
+      for (let i = 0; i < els.length; i++)
+        els[i].style.display = "";
+    }
+    else {
+      var els = document.querySelectorAll(".absentee");
+      for (let i = 0; i < els.length; i++)
+        els[i].style.display = absentee ? "" : "none";
+      els = document.querySelectorAll(".appearance");
+      for (let i = 0; i < els.length; i++)
+        els[i].style.display = absentee ? "none" : "";
+    }
     checkChange();
   }
   function voteMethodChange() {
@@ -52,6 +59,14 @@
   }
   document.querySelector("#vote-in-person").addEventListener("change", voteMethodChange);
   document.querySelector("#vote-by-mail").addEventListener("change", voteMethodChange);
+  document.querySelector("#choose-method").addEventListener("change", function() {
+    if (!this.checked) {
+      document.querySelector("#vote-in-person").checked = false;
+      document.querySelector("#vote-by-mail").checked = false;
+      localStorage.removeItem("vote-by-mail");
+      selectVoteMethod();
+    }
+  });
 })();
 
 
@@ -68,19 +83,25 @@
     if (localStorage[val])
       els[i].textContent = localStorage[val];
   }
-  var absentee = localStorage["vote-by-mail"] == "true";
-  document.querySelector("#vote-by-mail").checked = absentee;
-  document.querySelector("#vote-in-person").checked = !absentee;
-  selectVoteMethod();
+  if (localStorage["vote-by-mail"]) {
+    var absentee = localStorage["vote-by-mail"] == "true";
+    document.querySelector("#vote-by-mail").checked = absentee;
+    document.querySelector("#vote-in-person").checked = !absentee;
+    selectVoteMethod();
+  } else checkChange();
 })();
 
 
 // Clear checklist
 document.querySelector("#clear-checklist").addEventListener("click", function() {
-  var els = document.querySelectorAll("#checklist input[type='checkbox']");
+  var els = document.querySelectorAll("#checklist input");
   for (let i = 0; i < els.length; i++)
     els[i].checked = false;
+  els = document.querySelectorAll("#checklist [contenteditable]");
+  for (let i = 0; i < els.length; i++)
+    els[i].textContent = "";
   checkChange();
+  localStorage.clear();
 });
 
 
