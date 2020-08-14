@@ -69,7 +69,7 @@ body>div:first-of-type p {
 
 #checklist li {
   margin-bottom: 1em;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 
 #checklist label {
@@ -146,7 +146,7 @@ body>div:first-of-type p {
 
 .large {
   box-sizing: border-box;
-  padding: 15px;
+  padding: 20px;
   background: rgba(255,255,255,.3);
   border-radius: 20px;
   font-size: 1.25em;
@@ -192,12 +192,12 @@ input[type="time"] {
   Dropdown selection
 */
 
-#checklist .dropdown>div {
+#checklist .dropdown {
   display: inline-block;
   position: relative;
 }
 
-#checklist .dropdown>div>div:first-of-type {
+#checklist .dropdown>input[type="text"] {
   min-width: 120px;
   padding: 4px;
   border: 1px #000 solid;
@@ -205,7 +205,7 @@ input[type="time"] {
   font-size: 16px;
 }
 
-#checklist .dropdown>div>div:nth-of-type(2) {
+#checklist .dropdown>div {
   box-sizing: border-box;
   display: none;
   position: absolute;
@@ -214,17 +214,17 @@ input[type="time"] {
   z-index: 1;
 }
 
-#checklist .dropdown>div>div:first-of-type:focus + div,
-#checklist .dropdown>div>div:nth-of-type(2):active {
+#checklist .dropdown>input[type="text"]:focus + div,
+#checklist .dropdown>div:active {
   display: block;
 }
 
-#checklist .dropdown>div>div:nth-of-type(2) div {
+#checklist .dropdown>div>div {
   cursor: pointer;
   padding: 10px;
 }
 
-#checklist .dropdown>div>div:nth-of-type(2) div:hover {
+#checklist .dropdown>div>div:hover {
   background: #eee;
 }
 
@@ -265,27 +265,32 @@ input[type="time"] {
   Voting statement
 */
 
-ul>li:last-child h2 {
-  margin: .5em 0;
+#checklist>li:last-child:not(.large) {
+  padding-left: 0;
+  font-size: 1.25em;
 }
 
-ul>li:last-child .detail {
-  padding-top: 0 !important;
+#checklist>li:last-child h2 {
+  margin: 0 0 .5em;
 }
 
-ul>li:last-child>div {
+#checklist>li:last-child .detail {
+  display: block !important;
+  padding: 0 !important;
+}
+
+#checklist>li:last-child>div {
   display: inline-block;
   font-size: .8em !important;
 }
 
-ul>li:last-child [contenteditable] {
+#checklist>li:last-child .statement span {
   display: inline !important;
-  /* min-width: 80px; */
+  min-width: 10px;
   border-bottom: 1px #000 solid;
-  text-align: center;
 }
 
-ul>li:last-child div.button,
+#checklist>li:last-child div.button,
 .button {
   display: inline-block;
   margin: 10px;

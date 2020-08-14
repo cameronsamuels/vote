@@ -35,6 +35,9 @@
       }
       localStorage[checks[i].id] = checks[i].checked;
     }
+    if (document.querySelector(".large") == null)
+      document.querySelector("ul>li:last-child").classList.add("large");
+    else document.querySelector("ul>li:last-child").classList.remove("large");
   }
   for (let i = 0; i < els.length; i++)
     els[i].addEventListener("change", checkChange);
@@ -85,13 +88,6 @@
     if (localStorage[els[i].id])
       els[i].checked = localStorage[els[i].id] == "true";
   }
-  // delete contenteditable below
-  var els = document.querySelectorAll("#checklist li [contenteditable]");
-  for (let i = 0; i < els.length; i++) {
-    var val = els[i].parentElement.parentElement.id;
-    if (localStorage[val])
-      els[i].textContent = localStorage[val];
-  }
   var els = document.querySelectorAll("#checklist li input:not([type='checkbox']):not([type='radio'])");
   for (let i = 0; i < els.length; i++) {
     var val = els[i].parentElement.id;
@@ -110,11 +106,15 @@
 // Clear checklist
 document.querySelector("#clear-checklist").addEventListener("click", function() {
   var els = document.querySelectorAll("#checklist input");
+  for (let i = 0; i < els.length; i++) {
+    var el = els[i];
+    if (el.type == "checkbox" || el.type == "radio")
+      el.checked = false;
+    else el.value = "";
+  }
+  var els = document.querySelectorAll(".statement span");
   for (let i = 0; i < els.length; i++)
-    els[i].checked = false;
-  els = document.querySelectorAll("#checklist [contenteditable]");
-  for (let i = 0; i < els.length; i++)
-    els[i].textContent = "";
+    els[i].textContent = "(" + els[i].id.replace("statement-", "") + ")";
   checkChange();
   localStorage.clear();
 });
@@ -195,31 +195,26 @@ function initMap() {
 (function() {
   function dropdownEvent(e) {
     var id;
+    var val = e.target.value || e.target.textContent;
     if (e.type == "click") {
-      e.target.parentElement.parentElement.querySelector("div[contenteditable]").textContent = e.target.textContent;
-      id = e.target.parentElement.parentElement.parentElement.id;
+      e.target.parentElement.parentElement.querySelector("input[type='text']").value = val;
+      id = e.target.parentElement.parentElement.id;
       e.target.parentElement.parentElement.parentElement.parentElement.querySelector("input[type='checkbox']").checked = true;
       checkChange();
     }
     else if (e.type == "input")
-      id = e.target.parentElement.parentElement.id;
-    document.querySelector(id.replace("select", "#statement")).textContent = e.target.textContent;
-    localStorage[id] = e.target.textContent;
+      id = e.target.parentElement.id;
+    document.querySelector(id.replace("select", "#statement")).textContent = val;
+    localStorage[id] = val;
   }
   document.querySelectorAll(".dropdown").forEach(function(i) {
     i = i.id.substring(7);
-    var els = document.querySelectorAll("#select-" + i + ">div>div>div");
+    var els = document.querySelectorAll("#select-" + i + ">div>div");
     for (let j = 0; j < els.length; j++)
       els[j].addEventListener("click", dropdownEvent);
-    document.querySelector("#select-" + i + ">div>div").addEventListener("input", dropdownEvent);
+    document.querySelector("#select-" + i + " input[type='text']").addEventListener("input", dropdownEvent);
   });
 })();
-
-
-// Passting in text
-document.body.onpaste = function(e) {
-  return false;
-};
 
 
 // Print statement

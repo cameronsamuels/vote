@@ -64,10 +64,18 @@
           <h2>Voting by mail</h2>
           <li>
             <input id="check-absentee" type="checkbox">
-            <label for="check-absentee">Check your state's rules for voting by mail<a href="https://vote.org/absentee-voting-rules" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+            <label for="check-absentee">Check your state's eligibility for voting by mail<a href="https://vote.org/absentee-voting-rules" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
             <span class="detail">
               <span class="texas">You can vote by mail in Texas if you are 65 or older, have a physical disability, are outside the county during early voting and on election day, or confined in jail. Otherwise, you must vote in person.</span>
               <span class="generic">Your state may require you to fit in a certain criteria to be eligible to vote by mail.</span>
+            </span>
+          </li>
+          <li>
+            <input id="check-absentee" type="checkbox">
+            <label for="check-absentee">Check your state's verification for voting by mail<a href="https://www.ncsl.org/research/elections-and-campaigns/vopp-table-14-how-states-verify-voted-absentee.aspx" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+            <span class="detail">
+              <span class="texas">In Texas, a committee will match your signature to the signature on your ballot by mail request application or voter registration application to verify that you casted your own ballot.</span>
+              <span class="generic">Your state may require you to provide a copy of your ID, notorize your signature, or have witnesses sign your ballot.</span>
             </span>
           </li>
           <li>
@@ -125,10 +133,10 @@
             <span class="detail">
               Will you be driving, biking, getting a ride from someone else, or getting to the polls by other means? Figure this out ahead of time and always have a backup.
             </span>
-            <span id="select-transportation" class="dropdown">
+            <span>
               I will be arriving by:
-              <div>
-                <div contenteditable></div>
+              <div  id="select-transportation" class="dropdown">
+                <input type="text">
                 <div>
                   <div>Car</div>
                   <div>Bike</div>
@@ -144,10 +152,10 @@
               <span class="texas">In Texas, you need one of the seven acceptable forms of photo ID to vote.</span>
               <span class="generic">Your state may require you to present a photo ID from a select list of acceptable documents.</span>
             </span>
-            <span id="select-id" class="dropdown">
+            <span>
               The voter ID I have:
-              <div>
-                <div contenteditable></div>
+              <div id="select-id" class="dropdown">
+                <input type="text">
                 <div class="texas">
                   <div>Texas Driver License</div>
                   <div>Texas Election ID Certificate</div>
@@ -177,11 +185,11 @@
             Know your candidates and who you will be voting for. Be an informed voter and do not hold up the line.
           </span>
         </li>
-        <li class="large">
+        <li>
           <h2>Save your voting statement</h2>
           <span class="detail">
             <span>Hold yourself accountable by printing or saving in your calendar the voting plan statement that was just made by you completing this checklist.</span>
-            <span class="appearance statement">I will vote on <span id="statement-date" contenteditable>[ date ]</span> at <span id="statement-location" contenteditable>[ location ]</span> at <span id="statement-time" contenteditable>[ relative or exact time ]</span>. I will be getting there by <span id="statement-transportation" contenteditable>[ transportation ]</span>, and I will remember to bring my <span id="statement-id" contenteditable>[ voter ID ]</span></span>
+            <span class="appearance statement">I will vote on <span id="statement-date">(date)</span> at <span id="statement-location">(location)</span> at <span id="statement-time">(time)</span>. I will be getting there by <span id="statement-transportation">(transportation)</span>, and I will remember to bring my <span id="statement-id">(id)</span></span>
             <span class="absentee statement">I will be voting by mail, and I will remember to ...</span>
           </span>
           <div id="print-statement" class="button">Print Hard Copy</div>
