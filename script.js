@@ -94,6 +94,12 @@
     if (localStorage[val])
       els[i].value = localStorage[val];
   }
+  var els = document.querySelectorAll(".statement span");
+  for (let i = 0; i < els.length; i++) {
+    var val = els[i].id.replace("statement", "select");
+    if (localStorage[val])
+      els[i].textContent = localStorage[val];
+  }
   if (localStorage["vote-by-mail"]) {
     var absentee = localStorage["vote-by-mail"] == "true";
     document.querySelector("#vote-by-mail").checked = absentee;

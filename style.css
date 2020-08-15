@@ -328,3 +328,30 @@ input[type="time"] {
 #texas:target .generic {
   display: none !important;
 }
+
+
+/*
+  Print checklist
+*/
+
+@media print {
+
+  header,
+  noscript,
+  body>div:nth-of-type(2)>p,
+  #checklist>li:last-child .button
+  {
+    display: none !important;
+  }
+
+  #checklist>li:last-child {
+    border: 4px #000 solid;
+    padding: 20px !important;
+  }
+
+  #checklist a:after {
+    content: attr(href);
+    font-size: 1em;
+  }
+
+}
