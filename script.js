@@ -225,6 +225,7 @@ function initMap() {
 
 // Print statement
 document.querySelector("#print-statement").addEventListener("click", function() {
+  document.body.classList.add("print-statement");
   window.print();
 });
 

@@ -336,6 +336,20 @@ input[type="time"] {
 
 @media print {
 
+  .print-statement #checklist>li:not(:last-child),
+  .print-statement #checklist>div,
+  .print-statement #checklist>h2 {
+    display: none;
+  }
+
+  li, span, label, input, h2 {
+    page-break-inside: avoid;
+  }
+
+  body, ul {
+    margin-bottom: 0;
+  }
+
   header,
   noscript,
   body>div:nth-of-type(2)>p,
@@ -347,11 +361,25 @@ input[type="time"] {
   #checklist>li:last-child {
     border: 4px #000 solid;
     padding: 20px !important;
+    margin-bottom: 0;
+  }
+
+  #checklist a {
+    font-size: 1px;
+    letter-spacing: -1px;
+    color: transparent;
   }
 
   #checklist a:after {
     content: attr(href);
-    font-size: 1em;
+    font-size: 16px;
+    letter-spacing: normal;
+    color: #111;
+  }
+
+  input[type="radio"]:before {
+    color: #111 !important;
+    border: 1px #111 solid;
   }
 
 }
