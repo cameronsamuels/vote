@@ -225,8 +225,23 @@ function initMap() {
 
 // Print statement
 document.querySelector("#print-statement").addEventListener("click", function() {
+  document.body.className = "";
   document.body.classList.add("print-statement");
   window.print();
+});
+
+
+// Print blank checklist
+document.querySelector("#print-blank").addEventListener("click", function() {
+  document.body.className = "";
+  document.body.classList.add("print-blank");
+  window.print();
+});
+
+
+// Default print styles
+document.body.addEventListener("keydown", function() {
+  document.body.className = "";
 });
 
 
