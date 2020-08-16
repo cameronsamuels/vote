@@ -62,26 +62,61 @@
           <h2>Voting by mail</h2>
           <li>
             <input id="check-absentee" type="checkbox">
-            <label for="check-absentee">Check your state's eligibility for voting by mail<a href="https://vote.org/absentee-voting-rules" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+            <label for="check-absentee">Eligibility<a href="https://vote.org/absentee-voting-rules" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
             <span class="detail">
               <span class="texas">You can vote by mail in Texas if you are 65 or older, have a physical disability, are outside the county during early voting and on election day, or confined in jail. Otherwise, you must vote in person.</span>
               <span class="generic">Your state may require you to fit in a certain criteria to be eligible to vote by mail.</span>
             </span>
           </li>
           <li>
-            <input id="check-absentee" type="checkbox">
-            <label for="check-absentee">Check your state's verification for voting by mail<a href="https://www.ncsl.org/research/elections-and-campaigns/vopp-table-14-how-states-verify-voted-absentee.aspx" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+            <input id="request-absentee" type="checkbox">
+            <label for="request-absentee">Request your ballot<a href="https://vote.org/absentee-ballot-deadlines" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
             <span class="detail">
-              <span class="texas">In Texas, a committee will match your signature to the signature on your ballot by mail request application or voter registration application to verify that you casted your own ballot.</span>
-              <span class="generic">Your state may require you to provide a copy of your ID, notorize your signature, or have witnesses sign your ballot.</span>
+              <span class="generic"><a href="https://vote.org/absentee-ballot" target="_blank" rel="noopener">Request your ballot by mail before the deadline</a></span>
+              <span class="texas">The deadline to request your ballot in Texas is October 23. Visit the <a href="https://www.sos.texas.gov/elections/voter/reqabbm.shtml">Secretary of State website</a> to request an absentee ballot by mail.</span>
             </span>
           </li>
           <li>
-            <input id="request-absentee" type="checkbox">
-            <label for="request-absentee">Request your mail-in ballot before the deadline<a href="https://vote.org/absentee-ballot-deadlines" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+            <input id="verify-absentee" type="checkbox">
+            <label for="verify-absentee">Verification method<a href="https://www.ncsl.org/research/elections-and-campaigns/vopp-table-14-how-states-verify-voted-absentee.aspx" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
             <span class="detail">
-              <span class="generic"><a href="https://vote.org/absentee-ballot" target="_blank" rel="noopener">Request your ballot by mail</a></span>
-              <span class="texas">The deadline in Texas is October 23. Visit the <a href="https://www.sos.texas.gov/elections/voter/reqabbm.shtml">Secretary of State website</a> to request an absentee ballot by mail.</span>
+              <span class="texas">In Texas, a committee will match your signature to the signature on your ballot by mail request application or voter registration application to verify that you casted your own ballot.</span>
+              <span class="generic">Your state may require you to verify that you were the one to cast your own ballot.</span>
+            </span>
+            <span>
+              To verify my identity when voting by mail in my state, I must:
+              <div id="select-mail-security" class="dropdown">
+                <input type="text">
+                <div>
+                  <div>Provide a signature</div>
+                  <div>Notorize my signature</div>
+                  <div>Have a witness sign</div>
+                  <div>Have two witnesses sign</div>
+                  <div>Provide a copy of a valid ID</div>
+                </div>
+              </div>
+            </span>
+          </li>
+          <li>
+            <input id="absentee-date" type="checkbox">
+            <label for="absentee-date">Ballot delivery</label>
+            <span class="detail">
+              <span>Absentee ballots will generally be mailed during ___ and will need to be mailed back as soon as possible.</span>
+            </span>
+            <span id="select-absentee-date">
+              The date my absentee ballot will be delivered is:
+              <input type="text">
+            </span>
+          </li>
+          <li>
+            <input id="absentee-location" type="checkbox">
+            <label for="absentee-location">Completed ballot drop-off location</label>
+            <span class="detail">
+              <span>In the event you cannot mail your ballot, you should know the in-person location that you can drop-off your completed ballot. This is often NOT your polling place.</span>
+            </span>
+            <span id="select-absentee-location">
+              The location I can drop-off my absentee ballot is:
+              <input type="text">
             </span>
           </li>
         </div>
@@ -89,7 +124,7 @@
           <h2>In-person voting</h2>
           <li>
             <input id="lookup-locations" type="checkbox">
-            <label for="lookup-locations">Find my polling location(s)<a href="https://vote.org/polling-place-locator" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+            <label for="lookup-locations">Polling location(s)<a href="https://vote.org/polling-place-locator" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
             <span class="detail">
               <span class="texas">In Texas, you can vote at any polling location in your county during early voting, but you might have to vote at a specific location on election day.</span>
               <span class="texas">Visit the <a href="https://teamrv-mvp.sos.texas.gov/MVP/mvp.do">Secretary of State website</a> to find your polling location(s).</span>
@@ -127,7 +162,7 @@
           </li>
           <li>
             <input id="determine-transportation" type="checkbox">
-            <label for="determine-transportation">Determine your transportation</label>
+            <label for="determine-transportation">Transportation</label>
             <span class="detail">
               Will you be driving, biking, getting a ride from someone else, or getting to the polls by other means? Figure this out ahead of time and always have a backup.
             </span>
@@ -145,7 +180,7 @@
           </li>
           <li>
             <input id="lookup-id" type="checkbox">
-            <label for="lookup-id">Verify that you have an acceptable voter ID<a href="https://vote.org/voter-id-laws" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+            <label for="lookup-id">Acceptable voter ID<a href="https://vote.org/voter-id-laws" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
             <span class="detail">
               <span class="texas">In Texas, you need one of the seven acceptable forms of photo ID to vote.</span>
               <span class="generic">Your state may require you to present a photo ID from a select list of acceptable documents.</span>
@@ -178,7 +213,7 @@
         </li>
         <li>
           <input id="sample-ballot" type="checkbox">
-          <label for="sample-ballot">Fill out your sample ballot<a href="https://ballotpedia.org/Sample_Ballot_Lookup" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+          <label for="sample-ballot">Sample ballot<a href="https://ballotpedia.org/Sample_Ballot_Lookup" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
           <span class="detail">
             Know your candidates and who you will be voting for. Be an informed voter and do not hold up the line.
           </span>
@@ -188,7 +223,7 @@
           <span class="detail">
             <span>Hold yourself accountable by printing or saving in your calendar the voting plan statement that was just made by you completing this checklist.</span>
             <span class="appearance statement">I will vote on <span id="statement-date">(date)</span> at <span id="statement-location">(location)</span> at <span id="statement-time">(time)</span>. I will be getting there by <span id="statement-transportation">(transportation)</span>, and I will remember to bring my <span id="statement-id">(id)</span></span>
-            <span class="absentee statement">I will be voting by mail, and I will remember to ...</span>
+            <span class="absentee statement">I will be voting by mail in October, and I will remember to keep an eye out for the delivery of my ballot around the time of (date). I will return it in a timely manner via mail or by dropping it off at (location). I will need to <span id="statement-mail-security">(mail-security)</span> to validate my ballot.</span>
           </span>
           <div id="print-statement" class="button">Print Hard Copy</div>
           <div id="print-blank" class="button">Print Blank Checklist</div>
@@ -197,7 +232,7 @@
             <span class="start">11/03/2020 07:00 AM</span>
             <span class="location"></span>
             <span class="title">Vote in the election!</span>
-            <span class="description"><p></p><p>View the voting checklist at https://cameronsamuels.com/vote</p></span>
+            <span class="description"><p></p><p>View the voting checklist and find voting information at https://cameronsamuels.com/vote</p></span>
             <span class="alarm_reminder">1440</span>
           </div>
         </li>

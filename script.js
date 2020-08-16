@@ -257,14 +257,21 @@ document.body.addEventListener("keydown", function() {
 
 // Add statement to calendar
 document.querySelector(".addeventatc").addEventListener("click", function() {
+  var button = document.querySelector(".addeventatc");
   var method = document.querySelector("#vote-by-mail").checked ? "absentee" : "appearance";
   var statement = document.querySelector(".statement." + method);
-  var date = document.querySelector("#select-date input").value;
-  var mdy = date.substring(5, 7) + "/" + date.substring(8) + "/" + date.substring(0, 4);
-  var datetime = mdy + " " + document.querySelector("#select-time input").value;
-  var location = document.querySelector("#select-location").value;
-  var button = document.querySelector(".addeventatc");
-  button.querySelector(".start").textContent = datetime;
-  button.querySelector(".location").textContent = location;
+  if (method == "appearance") {
+    var date = document.querySelector("#select-date input").value;
+    var mdy = date.substring(5, 7) + "/" + date.substring(8) + "/" + date.substring(0, 4);
+    var datetime = mdy + " " + document.querySelector("#select-time input").value;
+    var location = document.querySelector("#select-location input").value;
+    button.querySelector(".start").textContent = datetime;
+    button.querySelector(".location").textContent = location;
+  }
+  else {
+    button.querySelector(".start").textContent = "10/10/2020 07:00 AM";
+    button.querySelector(".location").textContent = "Vote by mail";
+    button.querySelector(".alarm_reminder").textContent = "14400";
+  }
   button.querySelector(".description p").textContent = statement.textContent;
 });

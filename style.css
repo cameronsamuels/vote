@@ -275,7 +275,7 @@ input[type="time"] {
   font-size: 1.25em;
 }
 
-#checklist>li:last-child h2 {
+#checklist>li:last-child.large h2 {
   margin: 0 0 .5em;
 }
 
@@ -353,6 +353,12 @@ input[type="time"] {
 
   .print-blank #checklist input:not([type="radio"]) {
     color: transparent !important;
+  }
+
+  .print-blank ::-webkit-datetime-edit-year-field,
+  .print-blank ::-webkit-datetime-edit-month-field,
+  .print-blank ::-webkit-datetime-edit-day-field {
+    color: transparent;
   }
 
   header,
