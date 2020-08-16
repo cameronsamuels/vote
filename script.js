@@ -1,6 +1,23 @@
 // Code by Cameron Samuels
 
 
+// Helper functions
+function formatDate(date) {
+  var time = document.querySelector("#select-time>input[type='time']").value || "07:00";
+  return new Date(date + "T" + time).toLocaleString("default", { weekday: "long", month: "long", day: "numeric" });
+}
+function formatTime(time) {
+  var hour = parseInt(time.substring(0, 2));
+  var min = time.substring(3);
+  var period = "AM";
+  if (hour > 12) {
+    hour -= 12;
+    period = "PM";
+  }
+  return hour + ":" + min + " " + period;
+}
+
+
 // Temporary features
 (function() {
   // Countdown
@@ -96,9 +113,12 @@
   }
   var els = document.querySelectorAll(".statement span");
   for (let i = 0; i < els.length; i++) {
-    var val = els[i].id.replace("statement", "select");
-    if (localStorage[val])
-      els[i].textContent = localStorage[val];
+    var id = els[i].id;
+    var val = localStorage[id.replace("statement", "select")];
+    if (!val) return;
+    if (id == "statement-date") val = formatDate(val);
+    if (id == "statement-time") val = formatTime(val);
+    els[i].textContent = val;
   }
   if (localStorage["vote-by-mail"]) {
     var absentee = localStorage["vote-by-mail"] == "true";
@@ -171,8 +191,8 @@ function initMap() {
 // Voting date selection
 (function() {
   document.querySelector("#select-date>input[type='date']").addEventListener("input", function() {
-    var time = document.querySelector("#select-time>input[type='time']").value || "7:00 AM";
-    var date = new Date(this.value + " " + time).toLocaleString("default", { weekday: "long", month: "long", day: "numeric" });
+    var date = formatDate(this.value);
+    if (!this.value || date == "Invalid Date") date = "(date)";
     document.querySelector("#statement-date").textContent = date;
     localStorage["select-date"] = this.value;
   });
@@ -182,15 +202,8 @@ function initMap() {
 // Voting time selection
 (function() {
   document.querySelector("#select-time>input[type='time']").addEventListener("input", function() {
-    var time = this.value;
-    var hour = parseInt(time.substring(0, 2));
-    var min = time.substring(3);
-    var period = "AM";
-    if (hour > 12) {
-      hour -= 12;
-      period = "PM";
-    }
-    time = hour + ":" + min + " " + period;
+    var time = formatTime(this.value);
+    if (time.includes("NaN")) time = "(time)";
     document.querySelector("#statement-time").textContent = time;
     localStorage["select-time"] = this.value;
   });
@@ -247,11 +260,12 @@ document.body.addEventListener("keydown", function() {
 
 // Add statement to calendar
 document.querySelector(".addeventatc").addEventListener("click", function() {
-  var statement = document.querySelector(".statement.appearance");
-  var date = statement.querySelector("#statement-date").textContent;
-  var time = statement.querySelector("#statement-time").textContent;
-  var datetime = date + time; // TODO "08/22/2020 08:00 AM"
-  var location = statement.querySelector("#statement-location").textContent;
+  var method = document.querySelector("#vote-by-mail").checked ? "absentee" : "appearance";
+  var statement = document.querySelector(".statement." + method);
+  var date = document.querySelector("#select-date input").value;
+  var mdy = date.substring(5, 7) + "/" + date.substring(8) + "/" + date.substring(0, 4);
+  var datetime = mdy + " " + document.querySelector("#select-time input").value;
+  var location = document.querySelector("#select-location").value;
   var button = document.querySelector(".addeventatc");
   button.querySelector(".start").textContent = datetime;
   button.querySelector(".location").textContent = location;
