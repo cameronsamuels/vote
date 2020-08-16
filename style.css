@@ -237,10 +237,6 @@ input[type="time"] {
   Radio selection
 */
 
-#checklist .radio {
-  display: block;
-}
-
 #checklist .radio input[type="radio"] {
   display: inline-block;
   position: relative;

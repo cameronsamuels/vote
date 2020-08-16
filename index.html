@@ -27,8 +27,9 @@
     
     <div>
       <p>
-        <span class="button" id="show-details">Show details</span>
-        <span class="button" id="clear-checklist">Clear checklist</span>
+        <span class="button" id="show-details">Show Details</span>
+        <span class="button" id="clear-checklist">Clear Checklist</span>
+        <span class="button" id="print-blank">Print Blank Checklist</span>
       </p>
       <ul id="checklist">
         <h2>Voter Registration</h2>
@@ -52,7 +53,6 @@
         <h2>How will you vote?</h2>
         <li>
           <input id="choose-method" type="checkbox">
-          <label for="choose-method">Choose whether you will vote in person or by mail</label>
           <span class="radio">
             <input id="vote-in-person" name="method" value="In person" type="radio">
             <input id="vote-by-mail" name="method" value="By mail" type="radio">
@@ -226,7 +226,6 @@
             <span class="absentee statement">I will be voting by mail in October, and I will remember to keep an eye out for the delivery of my ballot around the time of (date). I will return it in a timely manner via mail or by dropping it off at (location). I will need to <span id="statement-mail-security">(mail-security)</span> to validate my ballot.</span>
           </span>
           <div id="print-statement" class="button">Print Hard Copy</div>
-          <div id="print-blank" class="button">Print Blank Checklist</div>
           <div class="addeventatc button">
             Add to Calendar
             <span class="start">11/03/2020 07:00 AM</span>

@@ -146,7 +146,7 @@ document.querySelector("#clear-checklist").addEventListener("click", function() 
 // Show details
 document.querySelector("#show-details").addEventListener("click", function() {
   document.body.classList.toggle("details");
-  this.textContent = this.textContent == "Hide details" ? "Show details" : "Hide details";
+  this.textContent = this.textContent == "Hide Details" ? "Show Details" : "Hide Details";
 });
 
 
