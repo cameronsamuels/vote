@@ -20,10 +20,6 @@ function formatTime(time) {
 
 // Temporary features
 (function() {
-  // Countdown
-  var el = document.querySelector("#countdown");
-  var d = new Date("October 5, 2020 11:59:59") - new Date();
-  el.textContent = "The deadline to register to vote in Texas is in " + Math.floor(d / 86400000) + " days";
   // November 3 election
   var el = document.querySelector("#select-date input[type='date']");
   var today = new Date();
@@ -115,7 +111,7 @@ function formatTime(time) {
   for (let i = 0; i < els.length; i++) {
     var id = els[i].id;
     var val = localStorage[id.replace("statement", "select")];
-    if (!val) return;
+    if (!val) continue;
     if (id == "statement-date") val = formatDate(val);
     if (id == "statement-time") val = formatTime(val);
     els[i].textContent = val;
@@ -125,7 +121,8 @@ function formatTime(time) {
     document.querySelector("#vote-by-mail").checked = absentee;
     document.querySelector("#vote-in-person").checked = !absentee;
     selectVoteMethod();
-  } else checkChange();
+  }
+  else checkChange();
 })();
 
 
