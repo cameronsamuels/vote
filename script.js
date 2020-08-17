@@ -278,17 +278,20 @@ document.querySelector(".addeventatc").addEventListener("click", function() {
   var method = document.querySelector("#vote-by-mail").checked ? "absentee" : "appearance";
   var statement = document.querySelector(".statement." + method);
   if (method == "appearance") {
-    var date = document.querySelector("#select-date input").value;
-    var mdy = date.substring(5, 7) + "/" + date.substring(8) + "/" + date.substring(0, 4);
-    var datetime = mdy + " " + document.querySelector("#select-time input").value;
-    var location = document.querySelector("#select-location input").value;
-    button.querySelector(".start").textContent = datetime;
+    var date = document.querySelector("#select-date input").value || "2020-10-20";
+    var time = document.querySelector("#select-time input").value || "12:00 PM";
+    var location = document.querySelector("#select-location input").value || "Polling Station";
+    button.querySelector(".start").textContent = date + " " + time;
     button.querySelector(".location").textContent = location;
+    button.querySelector(".alarm_reminder").textContent = "1440";
+    button.querySelector(".all_day_event").textContent = "false";
   }
   else {
-    button.querySelector(".start").textContent = "10/10/2020 07:00 AM";
-    button.querySelector(".location").textContent = "Vote by mail";
+    var date = document.querySelector("#select-mail-date input").value || "2020-10-10";
+    button.querySelector(".start").textContent = date;
+    button.querySelector(".location").textContent = "Vote By Mail";
     button.querySelector(".alarm_reminder").textContent = "14400";
+    button.querySelector(".all_day_event").textContent = "true";
   }
   button.querySelector(".description p").textContent = statement.textContent;
 });

@@ -29,6 +29,11 @@ body>div {
   margin: auto;
 }
 
+noscript {
+  display: block;
+  text-align: center;
+}
+
 
 /*
   Heading
