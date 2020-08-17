@@ -112,7 +112,7 @@ function formatTime(time) {
     var id = els[i].id;
     var val = localStorage[id.replace("statement", "select")];
     if (!val) continue;
-    if (id == "statement-date") val = formatDate(val);
+    if (id == "statement-date" || id == "statement-mail-date") val = formatDate(val);
     if (id == "statement-time") val = formatTime(val);
     els[i].textContent = val;
   }
@@ -174,6 +174,8 @@ function initMap() {
       address = place.name + ", " + address;
       document.querySelector("#statement-" + j).textContent = address;
       localStorage["select-" + j] = address;
+      document.querySelector("#" + (j == "location" ? "appearance" : "absentee") + "-location").checked = true;
+      checkChange();
     }
   }
   var locs = ["location", "dropoff-location"];
@@ -201,6 +203,12 @@ function initMap() {
     if (!this.value || date == "Invalid Date") date = "(date)";
     document.querySelector("#statement-date").textContent = date;
     localStorage["select-date"] = this.value;
+  });
+  document.querySelector("#select-mail-date>input[type='date']").addEventListener("input", function() {
+    var date = formatDate(this.value);
+    if (!this.value || date == "Invalid Date") date = "(date)";
+    document.querySelector("#statement-mail-date").textContent = date;
+    localStorage["select-mail-date"] = this.value;
   });
 })();
 

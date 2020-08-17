@@ -156,6 +156,10 @@ body>div:nth-of-type(2) p {
   font-size: 1.25em;
 }
 
+#checklist input:not([type="checkbox"]):not([type="radio"]) {
+  margin: 8px 3px;
+}
+
 
 /*
   Location picker
