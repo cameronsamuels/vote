@@ -293,16 +293,34 @@ input[type="time"] {
 
 #checklist>li:last-child:not(.large) {
   padding-left: 0;
-  font-size: 1.25em;
+  font-size: 1em;
+}
+
+#checklist>li:last-child.large {
+  font-size: 1em;
 }
 
 #checklist>li:last-child.large h2 {
   margin: 0 0 .5em;
 }
 
+#checklist>li:last-child:not(.large) h2 span {
+  display: none;
+}
+
+#checklist>li:last-child.large h2 {
+  text-transform: lowercase;
+}
+
+#checklist>li:last-child.large h2::first-letter {
+  text-transform: capitalize;
+}
+
 #checklist>li:last-child>span {
+  display: block;
   padding: 0 !important;
   margin-bottom: 15px;
+  font-size: 1em;
 }
 
 #checklist>li:last-child>div {
