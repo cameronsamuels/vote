@@ -2,7 +2,7 @@
 
 body {
   margin: 0;
-  margin-bottom: 30px;
+  padding-bottom: 50px;
   background: #ffdb4f;
   color: #111;
   font-family: helvetica, arial, sans-serif;
@@ -61,6 +61,20 @@ body>div:nth-of-type(2) p {
   text-align: center;
 }
 
+body>div:nth-of-type(2) p img {
+  height: 1.2em;
+  margin: 0 5px;
+  vertical-align: middle;
+}
+
+.box {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(255,255,255,.3);
+  font-size: .85em;
+}
+
 
 /*
   Checklist
@@ -70,6 +84,7 @@ body>div:nth-of-type(2) p {
   display: inline-block;
   padding: 0;
   list-style-type: none;
+  text-align: left;
 }
 
 #checklist>h2:first-child {
@@ -92,7 +107,7 @@ body>div:nth-of-type(2) p {
 }
 
 #checklist label a img {
-  height: 1em;
+  height: 1.2em;
 }
 
 #checklist input[type="checkbox"] {
@@ -285,9 +300,9 @@ input[type="time"] {
   margin: 0 0 .5em;
 }
 
-#checklist>li:last-child .detail {
-  display: block !important;
+#checklist>li:last-child>span {
   padding: 0 !important;
+  margin-bottom: 15px;
 }
 
 #checklist>li:last-child>div {
@@ -311,6 +326,11 @@ input[type="time"] {
   border-radius: 3px;
   cursor: pointer;
   user-select: none;
+}
+
+.button:hover,
+.button:active {
+  background: #5f5f5f;
 }
 
 .addeventatc_icon {
@@ -351,28 +371,31 @@ input[type="time"] {
     page-break-inside: avoid;
   }
 
-  .print-statement #checklist>li:not(:last-child),
-  .print-statement #checklist>div,
-  .print-statement #checklist>h2 {
-    display: none;
-  }
-
-  .print-blank #checklist input:not([type="radio"]) {
-    color: transparent !important;
-  }
-
-  .print-blank ::-webkit-datetime-edit-year-field,
-  .print-blank ::-webkit-datetime-edit-month-field,
-  .print-blank ::-webkit-datetime-edit-day-field {
-    color: transparent;
-  }
-
   header,
   noscript,
   body>div:nth-of-type(2)>p,
-  #checklist>li:last-child .button
-  {
+  #checklist>li:last-child .button,
+  .print-statement #checklist>li:not(:last-child),
+  .print-statement #checklist>li:last-child .detail,
+  .print-statement #checklist>div,
+  .print-statement #checklist>h2 {
     display: none !important;
+  }
+
+  .print-blank #checklist input:not([type="radio"]),
+  .print-blank ::-webkit-datetime-edit-year-field,
+  .print-blank ::-webkit-datetime-edit-month-field,
+  .print-blank ::-webkit-datetime-edit-day-field,
+  .print-blank #checklist>li:last-child span {
+    color: transparent !important;
+  }
+
+  .print-blank #checklist>li:last-child span {
+    border-color: transparent !important;
+  }
+
+  #checklist>li:last-child h2 {
+    margin-top: 10px;
   }
 
   #checklist input[type="radio"]:before {
@@ -422,6 +445,20 @@ input[type="time"] {
     font-size: 16px;
     letter-spacing: normal;
     color: #111;
+  }
+
+  #checklist:before {
+    content: "View the Plan Two Vote checklist at https://cameronsamuels.com/vote";
+    display: block;
+    margin: 0 0 30px;
+    text-align: center;
+  }
+
+  .print-blank #checklist>li:last-child h2:after {
+    content: "Example: I will vote at the high school on Tuesday after work";
+    display: block;
+    font-size: 16px;
+    font-weight: normal;
   }
 
 }
