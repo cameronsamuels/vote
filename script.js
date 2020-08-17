@@ -185,10 +185,25 @@ function initMap() {
     var input = document.querySelector("#" + j);
     var autocomplete = new google.maps.places.Autocomplete(input);
 
-    input.addEventListener("input", function(e) {
+    function inputEvent(e) {
       var k = e.target.id;
       localStorage["select-" + k] = e.target.value;
       document.querySelector("#statement-" + k).textContent = e.target.value;
+    }
+
+    input.addEventListener("input", inputEvent);
+
+    input.parentElement.addEventListener("click", function(e) {
+      if (e.target.disabled) {
+        e.target.removeAttribute("disabled");
+        e.target.removeAttribute("class");
+        e.target.removeAttribute("placeholder");
+        e.target.removeAttribute("style");
+        var old = e.target;
+        var newEl = old.cloneNode(true);
+        old.parentNode.replaceChild(newEl, old);
+        newEl.addEventListener("input", inputEvent);
+      }
     });
 
     autocomplete.addListener('place_changed', placeChange(autocomplete, j));

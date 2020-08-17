@@ -175,6 +175,7 @@ input[type="text"] {
   min-width: 120px;
   padding: 4px;
   background: transparent;
+  background-image: none !important;
   color: #111;
   border: 1px #000 solid;
   border-radius: 0;
