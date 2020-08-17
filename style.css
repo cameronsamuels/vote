@@ -1,0 +1,482 @@
+/* Code by Cameron Samuels */
+
+body {
+  margin: 0;
+  padding-bottom: 50px;
+  background: #ffdb4f;
+  color: #111;
+  font-family: helvetica, arial, sans-serif;
+  text-align: left;
+}
+
+header {
+  padding: 25px;
+  background: #444;
+  color: #fff;
+}
+
+a {
+  color: inherit !important;
+}
+
+h2 {
+  margin-top: 2em;
+}
+
+body>div {
+  width: 90%;
+  max-width: 450px;
+  margin: auto;
+}
+
+noscript {
+  display: block;
+  text-align: center;
+}
+
+
+/*
+  Heading
+*/
+
+body>div:first-of-type {
+  max-width: 550px;
+  text-align: center;
+}
+
+body>div:first-of-type h1 {
+  font-size: 3em;
+  margin-bottom: 0;
+}
+
+body>div:first-of-type h1 img {
+  height: 3rem;
+}
+
+body>div:first-of-type p {
+  font-size: 1.5em;
+}
+
+body>div:nth-of-type(2) p {
+  text-align: center;
+}
+
+body>div:nth-of-type(2) p img {
+  height: 1.2em;
+  margin: 0 5px;
+  vertical-align: middle;
+}
+
+.box {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(255,255,255,.3);
+  font-size: .85em;
+}
+
+
+/*
+  Checklist
+*/
+
+#checklist {
+  display: inline-block;
+  padding: 0;
+  list-style-type: none;
+  text-align: left;
+}
+
+#checklist>h2:first-child {
+  margin-top: 0;
+}
+
+#checklist li {
+  margin-bottom: 1em;
+  padding-left: 20px;
+}
+
+#checklist label {
+  font-size: 1em;
+  cursor: pointer;
+}
+
+#checklist label a {
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+#checklist label a img {
+  height: 1.2em;
+}
+
+#checklist input[type="checkbox"] {
+  position: relative;
+  -webkit-appearance: none;
+  padding: 10px;
+  background: transparent;
+  border: 3px #111 solid;
+  border-radius: 0;
+  outline: 0;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+#checklist input[type="checkbox"]:checked {
+  background: green;
+}
+
+#checklist input[type="checkbox"]:checked,
+#checklist input[type="checkbox"]:checked + label,
+#checklist input[type="checkbox"]:checked + label + span.detail {
+  opacity: .5;
+}
+
+#checklist input[type="checkbox"]:checked:before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background: url(images/check.svg) center/cover no-repeat;
+}
+
+#checklist input[type="checkbox"]:checked + label {
+  color: green;
+  text-decoration: line-through;
+}
+
+#checklist .detail,
+#checklist .detail + span {
+  display: block;
+  margin-bottom: 5px;
+  padding-left: 45px;
+  font-size: .8em;
+}
+
+#checklist .detail span {
+  display: block;
+  margin-bottom: .5em;
+}
+
+#checklist .large .detail,
+#checklist .large .detail + span {
+  padding-left: 0;
+  padding-top: 10px;
+}
+
+.large {
+  box-sizing: border-box;
+  padding: 20px;
+  background: rgba(255,255,255,.3);
+  border-radius: 20px;
+  font-size: 1.25em;
+}
+
+#checklist input:not([type="checkbox"]):not([type="radio"]) {
+  margin: 8px 3px;
+}
+
+
+/*
+  Location picker
+*/
+
+input[type="text"] {
+  -webkit-appearance: none;
+  min-width: 120px;
+  padding: 4px;
+  background: transparent;
+  background-image: none !important;
+  color: #111;
+  border: 1px #000 solid;
+  border-radius: 0;
+  box-shadow: none;
+  outline: 0;
+  font-size: 16px;
+}
+
+
+/*
+  Date/time picker
+*/
+
+input[type="date"],
+input[type="time"] {
+  min-height: 16px;
+  border: 1px solid #444;
+  border-radius: 0;
+  background: transparent;
+  padding: 3px 5px;
+  box-shadow: none;
+  outline: 0;
+  font-size: 16px;
+}
+
+
+/*
+  Dropdown selection
+*/
+
+#checklist .dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+#checklist .dropdown>input[type="text"] {
+  min-width: 120px;
+  padding: 4px;
+  border: 1px #000 solid;
+  outline: 0;
+  font-size: 16px;
+}
+
+#checklist .dropdown>div {
+  box-sizing: border-box;
+  display: none;
+  position: absolute;
+  width: 100%;
+  background: #fff;
+  z-index: 1;
+}
+
+#checklist .dropdown>input[type="text"]:focus + div,
+#checklist .dropdown>div:active {
+  display: block;
+}
+
+#checklist .dropdown>div>div {
+  cursor: pointer;
+  padding: 10px;
+}
+
+#checklist .dropdown>div>div:hover {
+  background: #eee;
+}
+
+
+/*
+  Radio selection
+*/
+
+#checklist .radio input[type="radio"] {
+  display: inline-block;
+  position: relative;
+  width: auto;
+  margin: 15px 0;
+  -webkit-appearance: none;
+  outline: 0;
+  border: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+#checklist .radio input[type="radio"]:before {
+  content: attr(value);
+  padding: 10px;
+  background: #444;
+  color: #fff;
+  cursor: pointer;
+}
+
+#checklist .radio input[type="radio"]:checked:before {
+  background: #fff;
+  color: #111;
+  text-decoration: underline;
+}
+
+
+/*
+  Voting statement
+*/
+
+#checklist>li:last-child:not(.large) {
+  padding-left: 0;
+  font-size: 1em;
+}
+
+#checklist>li:last-child.large {
+  font-size: 1em;
+}
+
+#checklist>li:last-child.large h2 {
+  margin: 0 0 .5em;
+}
+
+#checklist>li:last-child:not(.large) h2 span {
+  display: none;
+}
+
+#checklist>li:last-child.large h2 {
+  text-transform: lowercase;
+}
+
+#checklist>li:last-child.large h2::first-letter {
+  text-transform: capitalize;
+}
+
+#checklist>li:last-child>span {
+  display: block;
+  padding: 0 !important;
+  margin-bottom: 15px;
+  font-size: 1em;
+}
+
+#checklist>li:last-child>div {
+  display: inline-block;
+  font-size: .8em !important;
+}
+
+#checklist>li:last-child .statement span {
+  display: inline !important;
+  min-width: 10px;
+  border-bottom: 1px #000 solid;
+}
+
+#checklist>li:last-child div.button,
+.button {
+  display: inline-block;
+  margin: 5px 3px;
+  padding: 10px;
+  background: #444;
+  color: #fff !important;
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.button:hover,
+.button:active {
+  background: #5f5f5f;
+}
+
+.addeventatc_icon {
+  display: none !important;
+}
+
+
+/*
+  Details
+*/
+.detail {
+  display: none !important;
+}
+.details .detail,
+.large .detail {
+  display: block !important;
+}
+
+
+/*
+  Texas checklist
+*/
+#texas:not(:target) .texas {
+  display: none !important;
+}
+#texas:target .generic {
+  display: none !important;
+}
+
+
+/*
+  Print checklist
+*/
+
+@media print {
+
+  span, label, input, h2 {
+    page-break-inside: avoid;
+  }
+
+  header,
+  noscript,
+  body>div:nth-of-type(2)>p,
+  #checklist>li:last-child .button,
+  .print-statement #checklist>li:not(:last-child),
+  .print-statement #checklist>li:last-child .detail,
+  .print-statement #checklist>div,
+  .print-statement #checklist>h2 {
+    display: none !important;
+  }
+
+  .print-blank #checklist input:not([type="radio"]),
+  .print-blank ::-webkit-datetime-edit-year-field,
+  .print-blank ::-webkit-datetime-edit-month-field,
+  .print-blank ::-webkit-datetime-edit-day-field,
+  .print-blank #checklist>li:last-child span {
+    color: transparent !important;
+  }
+
+  .print-blank #checklist>li:last-child span {
+    border-color: transparent !important;
+  }
+
+  #checklist>li:last-child h2 {
+    margin-top: 10px;
+  }
+
+  #checklist input[type="radio"]:before {
+    background: transparent !important;
+    color: #111 !important;
+    border: 1px #111 solid;
+  }
+
+  #checklist input[type="checkbox"]:checked {
+    background: transparent;
+    border-color: #111;
+    opacity: 1;
+  }
+
+  #checklist input[type="checkbox"]:checked:before {
+    display: none;
+  }
+
+  #checklist input[type="checkbox"]:checked + label {
+    color: #111;
+    text-decoration: none;
+    opacity: 1;
+  }
+
+  body {
+    background: transparent;
+  }
+
+  body, ul {
+    margin-bottom: 0;
+  }
+
+  #checklist>li:last-child {
+    border: 4px #111 solid;
+    padding: 20px !important;
+    margin-bottom: 0;
+  }
+
+  #checklist a {
+    font-size: 1px;
+    letter-spacing: -1px;
+    color: transparent;
+  }
+
+  #checklist a:after {
+    content: attr(href);
+    font-size: 16px;
+    letter-spacing: normal;
+    color: #111;
+  }
+
+  #checklist:before {
+    content: "View the Plan Two Vote checklist at https://cameronsamuels.com/vote";
+    display: block;
+    margin: 0 0 30px;
+    text-align: center;
+  }
+
+  .print-blank #checklist>li:last-child h2:after {
+    content: "Example: I will vote at the high school on Tuesday after work";
+    display: block;
+    font-size: 16px;
+    font-weight: normal;
+  }
+
+}

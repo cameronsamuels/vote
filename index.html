@@ -1,1 +1,259 @@
+<!-- Code by Cameron Samuels -->
+
 <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  
+  <head>
+    <title>Plan Two Vote</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
+  </head>
+  
+  <body id="texas">
+
+    <header>
+      <span class="generic">Are you a Texas voter? Use the <a href="#texas">Texas-specific interactive checklist</a> to help you speed through the process even faster.</span>
+      <span class="texas">Not from Texas? Use the <a href="#">generic interactive checklist</a> to craft your voting plan.</span>
+    </header>
+      
+    <div>
+      <h1>Plan Two<img src="images/two.png"> Vote</h1>
+      <p>Expedite the process of voting by crafting your voting plan in just <span style="display:inline-block">two minutes</span></p>
+    </div>
+
+    <noscript>This website requires JavaScript. Please enable it or use an updated browser.</noscript>
+    
+    <div>
+      <p>
+        <span class="button" id="show-details">Show Details</span>
+        <span class="button" id="clear-checklist">Clear Checklist</span>
+        <span class="button" id="print-blank">Print Blank Checklist</span>
+        <br>
+        <span class="box"><img src="images/info.svg">Click this icon to lookup state-specific information</span>
+      </p>
+      <ul id="checklist">
+        <h2>Voter Registration</h2>
+        <li>
+          <input id="register" type="checkbox">
+          <label for="register">Register before the deadline<a href="https://vote.org/voter-registration-deadlines" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+          <span class="detail">
+            <span>You must register to vote before the state-specific deadline or you will not be able to vote.</span>
+            <span class="texas">The deadline in Texas is October 5. Visit the <a href="http://votetexas.gov/register-to-vote" target="_blank" rel="noopener">Vote Texas website</a> to find information on registering to vote in person or by mail.</span>
+            <span class="generic"><a href="https://vote.org/register-to-vote" target="_blank" rel="noopener">Register to vote at vote.org</a></span>
+          </span>
+        </li>
+        <li>
+          <input id="verify-registration" type="checkbox">
+          <label for="verify-registration">Verify that you are registered</label>
+          <span class="detail">
+            <span>You may have been removed from voter rolls for many reasons: change of address, change of name, and even without your knowledge or consent during voter purges.</span>
+            <span class="texas">Verify that you are registered to vote with your current address and legal name by visiting the <a href="https://teamrv-mvp.sos.texas.gov/MVP/mvp.do" target="_blank" rel="noopener">Texas Secretary of State website</a>.</span>
+            <span class="generic"><a href="https://vote.org/am-i-registered-to-vote" target="_blank" rel="noopener">Verify that you are registered at vote.org</a></span>
+          </span>
+        </li>
+        <h2>How will you vote?</h2>
+        <li>
+          <input id="choose-method" type="checkbox">
+          <span class="radio">
+            <input id="vote-in-person" name="method" value="In person" type="radio">
+            <input id="vote-by-mail" name="method" value="By mail" type="radio">
+          </span>
+        </li>
+        <div class="absentee">
+          <h2>Voting by mail</h2>
+          <li>
+            <input id="check-absentee" type="checkbox">
+            <label for="check-absentee">Eligibility<a href="https://vote.org/absentee-voting-rules" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+            <span class="detail">
+              <span class="texas">You can vote by mail in Texas if you are 65 or older, have a physical disability, are outside the county during early voting and on election day, or confined in jail. Otherwise, you must vote in person.</span>
+              <span class="generic">Your state may require you to meet certain criteria to be eligible to vote by mail.</span>
+              <span class="generic"><a href="https://vote.org/absentee-voting-rules" target="_blank" rel="noopener">Check your state's eligibility criteria at vote.org</a></span>
+            </span>
+          </li>
+          <li>
+            <input id="request-absentee" type="checkbox">
+            <label for="request-absentee">Request your ballot<a href="https://vote.org/absentee-ballot-deadlines" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+            <span class="detail">
+              <span>You must request to vote by mail before the state-specific deadline or you will not be able to vote by mail (this does not apply for states with all-mail elections).</span>
+              <span class="generic"><a href="https://vote.org/absentee-ballot" target="_blank" rel="noopener">Request your ballot by mail</a></span>
+              <span class="texas">The deadline to request your mail-in ballot in Texas is October 23. Request to vote by mail by visiting the <a href="https://www.sos.texas.gov/elections/voter/reqabbm.shtml" target="_blank" rel="noopener">Texas Secretary of State website</a>.</span>
+            </span>
+          </li>
+          <li>
+            <input id="verify-absentee" type="checkbox">
+            <label for="verify-absentee">Verification method<a href="https://www.ncsl.org/research/elections-and-campaigns/vopp-table-14-how-states-verify-voted-absentee.aspx" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+            <span class="detail">
+              <span class="texas">In Texas, a committee will match the signature on your ballot to the signature on your ballot by mail request application or voter registration application to verify that you casted your own ballot.</span>
+              <span class="generic">Your state may require you to verify that you were the one to cast your own ballot.</span>
+            </span>
+            <span>
+              To verify my identity when voting by mail in my state, I must:
+              <div id="select-mail-security" class="dropdown">
+                <input type="text">
+                <div>
+                  <div>Provide a signature</div>
+                  <div>Notorize my signature</div>
+                  <div>Have a witness sign</div>
+                  <div>Have two witnesses sign</div>
+                  <div>Provide a copy of a valid ID</div>
+                </div>
+              </div>
+            </span>
+          </li>
+          <li>
+            <input id="absentee-date" type="checkbox">
+            <label for="absentee-date">Ballot delivery</label>
+            <span class="detail">
+              <span>Absentee ballots will generally be mailed during the early voting period in October, and they will need to be mailed back as soon as possible.</span>
+              <span>If you are unsure, you can select October 10 below.</span>
+            </span>
+            <span id="select-mail-date">
+              The date I will start looking out for my ballot will be:
+              <input type="date">
+            </span>
+          </li>
+          <li>
+            <input id="absentee-location" type="checkbox">
+            <label for="absentee-location">Completed ballot drop-off location</label>
+            <span class="detail">
+              <span>In the event you cannot mail your ballot, you should know the in-person location that you can drop-off your completed ballot. This is often NOT your polling place.</span>
+              <span class="texas">In Texas, you can drop-off your absentee ballot at your County Clerk's office. You must provide an acceptable voter ID to do this (see in-person checklist for voter ID and transportation)</span>
+            </span>
+            <span id="select-dropoff-location">
+              The location I can drop-off my absentee ballot is:
+              <input type="text" id="dropoff-location">
+            </span>
+          </li>
+        </div>
+        <div class="appearance">
+          <h2>In-person voting</h2>
+          <li>
+            <input id="appearance-location" type="checkbox">
+            <label for="appearance-location">Polling location(s)<a href="https://vote.org/polling-place-locator" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+            <span class="detail">
+              <span class="texas">In Texas, you can vote at any polling location in your county during early voting, but you might have to vote at a specific location on election day.</span>
+              <span class="texas">Find your polling location(s) by visiting the <a href="https://teamrv-mvp.sos.texas.gov/MVP/mvp.do" target="_blank" rel="noopener">Texas Secretary of State website</a>.</span>
+              <span class="generic">Make sure you know where you will be voting.</span>
+            </span>
+            <span id="select-location">
+              The location I will vote at:
+              <input id="location" type="text">
+            </span>
+          </li>
+          <li>
+            <input id="lookup-dates" type="checkbox">
+            <label for="lookup-dates">Voting dates</label>
+            <span class="detail">
+              <span class="texas">Election Day is Tuesday, November 3, but you can vote in-person as early as October 13 in Texas.</span>
+              <span class="generic">Election Day is Tuesday, November 3, but you can vote in-person before then if your state provides an early voting window.</span>
+            </span>
+            <span id="select-date">
+              The day I will vote on:
+              <input type="date">
+            </span>
+          </li>
+          <li>
+            <input id="lookup-hours" type="checkbox">
+            <label for="lookup-hours">Polling hours<a href="https://vote.org/polling-place-locator" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+            <span class="detail">
+              <span class="texas">In Texas, polls are open from 7am to 7pm on election day, but they might have different hours during early voting.</span>
+              <span class="texas">Find the hours of your polling location(s) by visiting the <a href="https://teamrv-mvp.sos.texas.gov/MVP/mvp.do" target="_blank" rel="noopener">Texas Secretary of State website</a>.</span>
+              <span class="generic">Know what time your polling location(s) is open to coordinate when you will be voting.</span>
+            </span>
+            <span id="select-time">
+              The time I will vote at:
+              <input type="time">
+            </span>
+          </li>
+          <li>
+            <input id="determine-transportation" type="checkbox">
+            <label for="determine-transportation">Transportation</label>
+            <span class="detail">
+              Determine your transportation ahead of time and always have a backup.
+            </span>
+            <span>
+              I will be arriving by:
+              <div  id="select-transportation" class="dropdown">
+                <input type="text">
+                <div>
+                  <div>Car</div>
+                  <div>Bike</div>
+                  <div>Walking</div>
+                  <div>A ride from someone</div>
+                </div>
+              </div>
+            </span>
+          </li>
+          <li>
+            <input id="lookup-id" type="checkbox">
+            <label for="lookup-id">Acceptable voter ID<a href="https://vote.org/voter-id-laws" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+            <span class="detail">
+              <span class="texas">In Texas, you need one of the seven acceptable forms of photo ID to vote.</span>
+              <span class="texas">Click the box below to select a voter ID. If you do not have one of these, <a href="https://webservices.sos.state.tx.us/forms/reasonable-impediment-declaration.pdf" target="_blank" rel="noopener">print out and complete this form</a></span>
+              <span class="generic">Your state may require you to present a photo ID from a select list of acceptable documents.</span>
+            </span>
+            <span>
+              The voter ID I have:
+              <div id="select-id" class="dropdown">
+                <input type="text">
+                <div class="texas">
+                  <div>Texas Driver License</div>
+                  <div>Texas Election ID Certificate</div>
+                  <div>Texas Personal ID Card</div>
+                  <div>Texas Handgun License</div>
+                  <div>US Citizenship Certificate with Photo</div>
+                  <div>US Military ID Card with Photo</div>
+                  <div>US Passport (book or card)</div>
+                  <div>Reasonable Impediment Declaration</div>
+                </div>
+              </div>
+            </span>
+          </li>
+        </div>
+        <h2>Be informed and proactive</h2>
+        <li>
+          <input id="lookup-covid" type="checkbox">
+          <label for="lookup-covid">COVID-19 Precautions<a href="https://www.vote.org/covid-19" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+          <span class="detail">
+            There may have been changes to the election process due to COVID-19. Make sure to stay updated with how it may have affected the elections in your state or county.
+          </span>
+        </li>
+        <li>
+          <input id="sample-ballot" type="checkbox">
+          <label for="sample-ballot">Sample ballot<a href="https://ballotpedia.org/Sample_Ballot_Lookup" target="_blank" rel="noopener"><img alt="Lookup" src="images/info.svg"></a></label>
+          <span class="detail">
+            Know your candidates and who you will be voting for. Be an informed voter and do not hold up the line.
+          </span>
+        </li>
+        <li>
+          <h2><span>You have just completed </span>Your voting statement<span>!!</span></h2>
+          <span class="appearance statement">I will vote on <span id="statement-date">(date)</span> at <span id="statement-location">(location)</span> at <span id="statement-time">(time)</span>. I will be getting there by <span id="statement-transportation">(transportation)</span>, and I will remember to bring my <span id="statement-id">(id)</span>.</span>
+          <span class="absentee statement">I will be voting by mail in October, and I will remember to keep an eye out for the delivery of my ballot around the time of <span id="statement-mail-date">(mail-date)</span>. I will return it as soon as possible via mail or by dropping it off at <span id="statement-dropoff-location">(dropoff-location)</span>. I will need to <span id="statement-mail-security">(mail-security)</span> to validate my ballot.</span>
+          <span class="detail">Hold yourself accountable by printing this statement or saving it to your calendar.</span>
+          <div id="print-statement" class="button">Print Hard Copy</div>
+          <div class="addeventatc button">
+            Add to Calendar
+            <span class="start">2020-11-03 07:00 AM</span>
+            <span class="location"></span>
+            <span class="title">Vote in the election!</span>
+            <span class="description"><p></p><p>View the voting checklist and find voting information at https://cameronsamuels.com/vote</p></span>
+            <span class="all_day_event">true</span>
+            <span class="alarm_reminder">1440</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <p>Website created by Cameron Samuels. Check out the <a href="https://github.com/cameronsamuels/vote" target="_blank" rel="noopener">Github source code</a> and <a href="mailto:me@cameronsamuels.com" target="_blank" rel="noopener">report bugs</a>.</p>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNWmDwDM49_L2RmNyRVX6veBXneKEGNF4&libraries=places&callback=initMap"
+        defer></script>
+    <script src="script.js"></script>
+    
+  </body>
+  
+</html>
