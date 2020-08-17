@@ -152,36 +152,45 @@ document.querySelector("#show-details").addEventListener("click", function() {
 
 // Location selection
 function initMap() {
-  var input = document.querySelector("#location");
-  var autocomplete = new google.maps.places.Autocomplete(input);
+  function placeChange(autocomplete, j) {
+    return function() {
+      var place = autocomplete.getPlace();
+      if (!place.geometry) {
+        // User entered the name of a Place that was not suggested and
+        // pressed the Enter key, or the Place Details request failed.
+        window.alert("No details available for input: '" + place.name + "'");
+        return;
+      }
 
-  input.addEventListener("input", function() {
-    localStorage["select-location"] = this.value;
-    document.querySelector("#statement-location").textContent = this.value;
-  });
+      var address = '';
+      if (place.address_components) {
+        address = [
+          (place.address_components[0] && place.address_components[0].short_name || ''),
+          (place.address_components[1] && place.address_components[1].short_name || ''),
+          (place.address_components[2] && place.address_components[2].short_name || '')
+        ].join(' ');
+      }
 
-  autocomplete.addListener('place_changed', function() {
-    var place = autocomplete.getPlace();
-    if (!place.geometry) {
-      // User entered the name of a Place that was not suggested and
-      // pressed the Enter key, or the Place Details request failed.
-      window.alert("No details available for input: '" + place.name + "'");
-      return;
+      address = place.name + ", " + address;
+      document.querySelector("#statement-" + j).textContent = address;
+      localStorage["select-" + j] = address;
     }
+  }
+  var locs = ["location", "dropoff-location"];
+  for (let i = 0; i < locs.length; i++) {
+    var j = locs[i];
 
-    var address = '';
-    if (place.address_components) {
-      address = [
-        (place.address_components[0] && place.address_components[0].short_name || ''),
-        (place.address_components[1] && place.address_components[1].short_name || ''),
-        (place.address_components[2] && place.address_components[2].short_name || '')
-      ].join(' ');
-    }
+    var input = document.querySelector("#" + j);
+    var autocomplete = new google.maps.places.Autocomplete(input);
 
-    address = place.name + ", " + address;
-    document.querySelector("#statement-location").textContent = address;
-    localStorage["select-location"] = address;
-  });
+    input.addEventListener("input", function(e) {
+      var k = e.target.id;
+      localStorage["select-" + k] = e.target.value;
+      document.querySelector("#statement-" + k).textContent = e.target.value;
+    });
+
+    autocomplete.addListener('place_changed', placeChange(autocomplete, j));
+  }
 }
 
 

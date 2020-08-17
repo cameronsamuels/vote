@@ -106,7 +106,7 @@
             <span class="detail">
               <span>Absentee ballots will generally be mailed during ___ and will need to be mailed back as soon as possible.</span>
             </span>
-            <span id="select-absentee-date">
+            <span id="select-mail-date">
               The date my absentee ballot will be delivered is:
               <input type="text">
             </span>
@@ -116,10 +116,11 @@
             <label for="absentee-location">Completed ballot drop-off location</label>
             <span class="detail">
               <span>In the event you cannot mail your ballot, you should know the in-person location that you can drop-off your completed ballot. This is often NOT your polling place.</span>
+              <span class="texas">In Texas, you can drop-off your absentee ballot at your County Clerk's office. You must provide an acceptable voter ID to do this (see in-person checklist for voter ID and transportation)</span>
             </span>
-            <span id="select-absentee-location">
+            <span id="select-dropoff-location">
               The location I can drop-off my absentee ballot is:
-              <input type="text">
+              <input type="text" id="dropoff-location">
             </span>
           </li>
         </div>
@@ -228,7 +229,7 @@
           <span class="detail">
             <span>Hold yourself accountable by printing or saving in your calendar the voting plan statement that was just made by you completing this checklist.</span>
             <span class="appearance statement">I will vote on <span id="statement-date">(date)</span> at <span id="statement-location">(location)</span> at <span id="statement-time">(time)</span>. I will be getting there by <span id="statement-transportation">(transportation)</span>, and I will remember to bring my <span id="statement-id">(id)</span></span>
-            <span class="absentee statement">I will be voting by mail in October, and I will remember to keep an eye out for the delivery of my ballot around the time of (date). I will return it in a timely manner via mail or by dropping it off at (location). I will need to <span id="statement-mail-security">(mail-security)</span> to validate my ballot.</span>
+            <span class="absentee statement">I will be voting by mail in October, and I will remember to keep an eye out for the delivery of my ballot around the time of <span id="statement-mail-date">(mail-date)</span>. I will return it as soon as possible via mail or by dropping it off at <span id="statement-dropoff-location">(dropoff-location)</span>. I will need to <span id="statement-mail-security">(mail-security)</span> to validate my ballot.</span>
           </span>
           <div id="print-statement" class="button">Print Hard Copy</div>
           <div class="addeventatc button">
