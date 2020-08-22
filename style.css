@@ -81,6 +81,10 @@ main p img {
   font-size: .85em;
 }
 
+.box .button {
+  margin-bottom: 1em;
+}
+
 
 /*
   Checklist
