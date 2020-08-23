@@ -283,7 +283,8 @@ document.querySelector("#print-blank").addEventListener("click", function() {
 
 // Default print styles
 document.body.addEventListener("keydown", function() {
-  document.body.className = "";
+  document.body.classList.remove("print-blank");
+  document.body.classList.remove("print-statement");
 });
 
 
@@ -308,5 +309,5 @@ document.querySelector(".addeventatc").addEventListener("click", function() {
     button.querySelector(".alarm_reminder").textContent = "14400";
     button.querySelector(".all_day_event").textContent = "true";
   }
-  button.querySelector(".description p").textContent = statement.textContent;
+  button.querySelector(".description span").textContent = statement.textContent;
 });

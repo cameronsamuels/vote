@@ -4,9 +4,23 @@
 <html lang="en" dir="ltr">
   
   <head>
-    <title>Plan Two Vote</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="https://cameronsamuels.com/vote">
+    <title>Plan Two Vote</title>
+    <meta name="description" content="Expedite the process of voting by crafting your voting plan in just two minutes">
+    <link rel="icon" type="image/png" href="https://cameronsamuels.com/vote/images/two.png">
+    <link rel="apple-touch-icon" href="images/icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Plan Two Vote">
+    <meta name="twitter:image" content="https://cameronsamuels.com/vote/images/icon.png">
+    <meta property="og:url" content="https://cameronsamuels.com/vote">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Plan Two Vote">
+    <meta property="og:description" content="Expedite the process of voting by crafting your voting plan in just two minutes">
+    <meta property="og:image" content="https://cameronsamuels.com/vote/images/icon.png">
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
   </head>
@@ -19,19 +33,21 @@
     </header>
       
     <div>
-      <h1>Plan Two<img src="images/two.png"> Vote</h1>
-      <p>Expedite the process of voting by crafting your voting plan in just <span style="display:inline-block">two minutes</span></p>
+      <h1>Plan Two<img alt="" src="images/two.png"> Vote</h1>
+      <p>Expedite the process of voting by crafting your voting plan in just <span class="block">two minutes</span></p>
     </div>
 
     <noscript>This website requires JavaScript. Please enable it or use an updated browser.</noscript>
     
-    <div>
+    <main>
       <p>
-        <span class="button" id="show-details">Show Details</span>
-        <span class="button" id="clear-checklist">Clear Checklist</span>
-        <span class="button" id="print-blank">Print Blank Checklist</span>
-        <br>
-        <span class="box"><img src="images/info.svg">Click this icon to lookup state-specific information</span>
+        <span class="box">
+          <span class="button" id="show-details">Show Details</span>
+          <span class="button" id="clear-checklist">Clear Checklist</span>
+          <span class="button" id="print-blank">Print Blank Checklist</span>
+          <br>
+          <span><img alt="Lookup" src="images/info.svg">Click this icon to lookup state-specific information</span>
+        </span>
       </p>
       <ul id="checklist">
         <h2>Voter Registration</h2>
@@ -89,9 +105,9 @@
               <span class="generic">Your state may require you to verify that you were the one to cast your own ballot.</span>
             </span>
             <span>
-              To verify my identity when voting by mail in my state, I must:
+              <label for="input-mail-security">To verify my identity when voting by mail in my state, I must:</label>
               <div id="select-mail-security" class="dropdown">
-                <input type="text">
+                <input id="input-mail-security" type="text">
                 <div>
                   <div>Provide a signature</div>
                   <div>Notorize my signature</div>
@@ -110,8 +126,8 @@
               <span>If you are unsure, you can select October 10 below.</span>
             </span>
             <span id="select-mail-date">
-              The date I will start looking out for my ballot will be:
-              <input type="date">
+              <label for="input-mail-date">The date I will start looking out for my ballot will be:</label>
+              <input id="input-mail-date" type="date">
             </span>
           </li>
           <li>
@@ -122,7 +138,7 @@
               <span class="texas">In Texas, you can drop-off your absentee ballot at your County Clerk's office. You must provide an acceptable voter ID to do this (see in-person checklist for voter ID and transportation)</span>
             </span>
             <span id="select-dropoff-location">
-              The location I can drop-off my absentee ballot is:
+              <label for="dropoff-location">The location I can drop-off my absentee ballot is:</label>
               <input type="text" id="dropoff-location">
             </span>
           </li>
@@ -138,7 +154,7 @@
               <span class="generic">Make sure you know where you will be voting.</span>
             </span>
             <span id="select-location">
-              The location I will vote at:
+              <label for="location">The location I will vote at:</label>
               <input id="location" type="text">
             </span>
           </li>
@@ -150,8 +166,8 @@
               <span class="generic">Election Day is Tuesday, November 3, but you can vote in-person before then if your state provides an early voting window.</span>
             </span>
             <span id="select-date">
-              The day I will vote on:
-              <input type="date">
+              <label for="input-date">The day I will vote on:</label>
+              <input id="input-date" type="date">
             </span>
           </li>
           <li>
@@ -163,8 +179,8 @@
               <span class="generic">Know what time your polling location(s) is open to coordinate when you will be voting.</span>
             </span>
             <span id="select-time">
-              The time I will vote at:
-              <input type="time">
+              <label for="input-time">The time I will vote at:</label>
+              <input id="input-time" type="time">
             </span>
           </li>
           <li>
@@ -174,9 +190,9 @@
               Determine your transportation ahead of time and always have a backup.
             </span>
             <span>
-              I will be arriving by:
+              <label for="input-transportation">I will be arriving by:</label>
               <div  id="select-transportation" class="dropdown">
-                <input type="text">
+                <input id="input-transportation" type="text">
                 <div>
                   <div>Car</div>
                   <div>Bike</div>
@@ -195,9 +211,9 @@
               <span class="generic">Your state may require you to present a photo ID from a select list of acceptable documents.</span>
             </span>
             <span>
-              The voter ID I have:
+              <label for="input-id">The voter ID I have:</label>
               <div id="select-id" class="dropdown">
-                <input type="text">
+                <input id="input-id" type="text">
                 <div class="texas">
                   <div>Texas Driver License</div>
                   <div>Texas Election ID Certificate</div>
@@ -238,17 +254,17 @@
             <span class="start">2020-11-03 07:00 AM</span>
             <span class="location"></span>
             <span class="title">Vote in the election!</span>
-            <span class="description"><p></p><p>View the voting checklist and find voting information at https://cameronsamuels.com/vote</p></span>
+            <span class="description"><span></span><br><span>View the voting checklist and find voting information at https://cameronsamuels.com/vote</span></span>
             <span class="all_day_event">true</span>
             <span class="alarm_reminder">1440</span>
           </div>
         </li>
       </ul>
-    </div>
+    </main>
 
-    <div>
-      <p>Website created by Cameron Samuels. Check out the <a href="https://github.com/cameronsamuels/vote" target="_blank" rel="noopener">Github source code</a> and <a href="mailto:me@cameronsamuels.com" target="_blank" rel="noopener">report bugs</a>.</p>
-    </div>
+    <footer>
+      <p>Website created by Cameron Samuels.<br>Check out the <a href="https://github.com/cameronsamuels/vote" target="_blank" rel="noopener">Github source code</a> and <a href="mailto:me@cameronsamuels.com" target="_blank" rel="noopener">report bugs</a>.</p>
+    </footer>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNWmDwDM49_L2RmNyRVX6veBXneKEGNF4&libraries=places&callback=initMap"
         defer></script>
