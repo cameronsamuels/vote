@@ -1,5 +1,5 @@
 # Plan Two<img alt="" src="images/two.png" width="35">Vote
-Expedite the process of voting by crafting your voting plan in just two minutes. Visit the online website at [cameronsamuels.com/vote](https://cameronsamuels.com/vote).
+Expedite the process of voting by crafting your voting plan in just two minutes. Visit the online website at [plantwovote.com](https://plantwovote.com).
 
 ## Two Minutes
 Making a voting plan is a great way to be a proactive voter and ensure that you have all the information necessary to cast your ballot in the democratic process and fulfill your civic duty as an American citizen. By saying out loud how and when you will vote proves to be almost 100% successful in voting turnout. Plan Two Vote allows users to interactively build their voting plan in just two minutes, producing a "voting statement" at the end that can be printed or added to their calendar.

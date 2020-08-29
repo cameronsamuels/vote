@@ -482,7 +482,7 @@ input[type="time"] {
   }
 
   #checklist:before {
-    content: "View the Plan Two Vote checklist at https://cameronsamuels.com/vote";
+    content: "View the Plan Two Vote checklist at https://plantwovote.com";
     display: block;
     margin: 0 0 30px;
     text-align: center;
