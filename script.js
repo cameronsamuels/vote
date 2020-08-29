@@ -265,6 +265,13 @@ function initMap() {
 })();
 
 
+// Hide print for Android (incompatible)
+if (navigator.userAgent.toLowerCase().indexOf("android") > -1) {
+  document.querySelector("#print-statement").style.display = "none";
+  document.querySelector("#print-blank").style.display = "none";
+}
+
+
 // Print statement
 document.querySelector("#print-statement").addEventListener("click", function() {
   document.body.className = "";
