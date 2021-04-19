@@ -19,15 +19,15 @@ function formatTime(time) {
 
 
 // Temporary features
-(function() {
-  // November 3 election
-  var el = document.querySelector("#select-date input[type='date']");
-  var today = new Date();
-  var dd = (today.getDate() < 10 ? "0" : "") + today.getDate();
-  var mm = (today.getMonth() + 1 < 10 ? "0" : "") + (today.getMonth() + 1);
-  el.setAttribute("min", "2020-" + mm + "-" + dd);
-  el.setAttribute("max", "2020-11-03");
-})();
+// (function() {
+//   // November 3 election
+//   var el = document.querySelector("#select-date input[type='date']");
+//   var today = new Date();
+//   var dd = (today.getDate() < 10 ? "0" : "") + today.getDate();
+//   var mm = (today.getMonth() + 1 < 10 ? "0" : "") + (today.getMonth() + 1);
+//   el.setAttribute("min", "2020-" + mm + "-" + dd);
+//   el.setAttribute("max", "2020-11-03");
+// })();
 
 
 // Large checkboxes
