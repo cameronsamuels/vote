@@ -9,6 +9,16 @@ body {
   text-align: left;
 }
 
+@media screen and (min-width: 616px) {
+  html {
+    max-width: 600px;
+    margin: auto;
+    background: #fff3bd;
+    border-left: 8px #444 solid;
+    border-right: 8px #444 solid;
+  }
+}
+
 header {
   padding: 25px;
   background: #444;
@@ -57,10 +67,12 @@ body>div:first-of-type h1 {
 
 body>div:first-of-type h1 img {
   height: 3rem;
+  vertical-align: top;
 }
 
 body>div:first-of-type p {
   font-size: 1.5em;
+  margin-bottom: .65em;
 }
 
 main p {
@@ -73,18 +85,10 @@ main p img {
   vertical-align: middle;
 }
 
-.box {
-  display: inline-block;
-  margin: 10px 0;
-  padding: 10px;
-  background: rgba(255,255,255,.3);
+main>p {
+  margin: 0;
   font-size: .85em;
 }
-
-.box .button {
-  margin-bottom: 1em;
-}
-
 
 /*
   Checklist
@@ -184,6 +188,7 @@ main p img {
   background: rgba(255,255,255,.3);
   border-radius: 20px;
   font-size: 1.25em;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 #checklist input:not([type="checkbox"]):not([type="radio"]) {
@@ -272,6 +277,10 @@ input[type="time"] {
   Radio selection
 */
 
+#checklist #choose-method {
+  display: none;
+}
+
 #checklist .radio input[type="radio"] {
   display: inline-block;
   position: relative;
@@ -287,6 +296,7 @@ input[type="time"] {
   padding: 10px;
   background: #444;
   color: #fff;
+  border-radius: 3px;
   cursor: pointer;
 }
 
